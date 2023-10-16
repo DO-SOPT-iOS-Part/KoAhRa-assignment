@@ -16,6 +16,17 @@
 		A4BC70342ADD7A3300E54675 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BC70332ADD7A3300E54675 /* DetailView.swift */; };
 		A4BC70382ADD7A4800E54675 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BC70372ADD7A4800E54675 /* DetailViewController.swift */; };
 		A4BC703B2ADD7BA900E54675 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = A4BC703A2ADD7BA900E54675 /* SnapKit */; };
+		A4BC70402ADD813900E54675 /* FontLiterals.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BC703F2ADD813900E54675 /* FontLiterals.swift */; };
+		A4BC70422ADD814700E54675 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BC70412ADD814700E54675 /* UIView+.swift */; };
+		A4BC70442ADD816C00E54675 /* ImageLiterals.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BC70432ADD816C00E54675 /* ImageLiterals.swift */; };
+		A4BC70462ADD81CD00E54675 /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BC70452ADD81CD00E54675 /* UIImage+.swift */; };
+		A4BC70482ADD837300E54675 /* ColorLiterals.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BC70472ADD837300E54675 /* ColorLiterals.swift */; };
+		A4BC704A2ADD83BD00E54675 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BC70492ADD83BD00E54675 /* UIColor+.swift */; };
+		A4BC704D2ADD86BB00E54675 /* SF-Pro-Display-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = A4BC704C2ADD86BB00E54675 /* SF-Pro-Display-Thin.otf */; };
+		A4BC70522ADD86ED00E54675 /* SF-Pro-Display-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = A4BC704E2ADD86EC00E54675 /* SF-Pro-Display-Regular.otf */; };
+		A4BC70532ADD86ED00E54675 /* SF-Pro-Display-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = A4BC704F2ADD86EC00E54675 /* SF-Pro-Display-Bold.otf */; };
+		A4BC70542ADD86ED00E54675 /* SF-Pro-Display-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = A4BC70502ADD86EC00E54675 /* SF-Pro-Display-Medium.otf */; };
+		A4BC70552ADD86ED00E54675 /* SF-Pro-Display-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = A4BC70512ADD86ED00E54675 /* SF-Pro-Display-Light.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +40,17 @@
 		A4BC702F2ADD7A1C00E54675 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		A4BC70332ADD7A3300E54675 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		A4BC70372ADD7A4800E54675 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		A4BC703F2ADD813900E54675 /* FontLiterals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontLiterals.swift; sourceTree = "<group>"; };
+		A4BC70412ADD814700E54675 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
+		A4BC70432ADD816C00E54675 /* ImageLiterals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLiterals.swift; sourceTree = "<group>"; };
+		A4BC70452ADD81CD00E54675 /* UIImage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+.swift"; sourceTree = "<group>"; };
+		A4BC70472ADD837300E54675 /* ColorLiterals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorLiterals.swift; sourceTree = "<group>"; };
+		A4BC70492ADD83BD00E54675 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
+		A4BC704C2ADD86BB00E54675 /* SF-Pro-Display-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Thin.otf"; sourceTree = "<group>"; };
+		A4BC704E2ADD86EC00E54675 /* SF-Pro-Display-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Regular.otf"; sourceTree = "<group>"; };
+		A4BC704F2ADD86EC00E54675 /* SF-Pro-Display-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Bold.otf"; sourceTree = "<group>"; };
+		A4BC70502ADD86EC00E54675 /* SF-Pro-Display-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Medium.otf"; sourceTree = "<group>"; };
+		A4BC70512ADD86ED00E54675 /* SF-Pro-Display-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Light.otf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,8 +104,10 @@
 		A4BC70252ADD78DF00E54675 /* Global */ = {
 			isa = PBXGroup;
 			children = (
-				A4BC70282ADD794000E54675 /* SupportingFiles */,
+				A4BC703E2ADD810F00E54675 /* Extension */,
+				A4BC703D2ADD810100E54675 /* Literals */,
 				A4BC70272ADD793700E54675 /* Resources */,
+				A4BC70282ADD794000E54675 /* SupportingFiles */,
 			);
 			path = Global;
 			sourceTree = "<group>";
@@ -100,6 +124,7 @@
 		A4BC70272ADD793700E54675 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				A4BC704B2ADD864300E54675 /* Font */,
 				A4BC70192ADD72F600E54675 /* Assets.xcassets */,
 			);
 			path = Resources;
@@ -161,6 +186,38 @@
 				A4BC70372ADD7A4800E54675 /* DetailViewController.swift */,
 			);
 			path = ViewController;
+			sourceTree = "<group>";
+		};
+		A4BC703D2ADD810100E54675 /* Literals */ = {
+			isa = PBXGroup;
+			children = (
+				A4BC703F2ADD813900E54675 /* FontLiterals.swift */,
+				A4BC70432ADD816C00E54675 /* ImageLiterals.swift */,
+				A4BC70472ADD837300E54675 /* ColorLiterals.swift */,
+			);
+			path = Literals;
+			sourceTree = "<group>";
+		};
+		A4BC703E2ADD810F00E54675 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				A4BC70412ADD814700E54675 /* UIView+.swift */,
+				A4BC70452ADD81CD00E54675 /* UIImage+.swift */,
+				A4BC70492ADD83BD00E54675 /* UIColor+.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		A4BC704B2ADD864300E54675 /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				A4BC704F2ADD86EC00E54675 /* SF-Pro-Display-Bold.otf */,
+				A4BC70512ADD86ED00E54675 /* SF-Pro-Display-Light.otf */,
+				A4BC70502ADD86EC00E54675 /* SF-Pro-Display-Medium.otf */,
+				A4BC704E2ADD86EC00E54675 /* SF-Pro-Display-Regular.otf */,
+				A4BC704C2ADD86BB00E54675 /* SF-Pro-Display-Thin.otf */,
+			);
+			path = Font;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -227,8 +284,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A4BC70552ADD86ED00E54675 /* SF-Pro-Display-Light.otf in Resources */,
+				A4BC70542ADD86ED00E54675 /* SF-Pro-Display-Medium.otf in Resources */,
 				A4BC701D2ADD72F600E54675 /* LaunchScreen.storyboard in Resources */,
+				A4BC70532ADD86ED00E54675 /* SF-Pro-Display-Bold.otf in Resources */,
 				A4BC701A2ADD72F600E54675 /* Assets.xcassets in Resources */,
+				A4BC70522ADD86ED00E54675 /* SF-Pro-Display-Regular.otf in Resources */,
+				A4BC704D2ADD86BB00E54675 /* SF-Pro-Display-Thin.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -239,12 +301,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A4BC70402ADD813900E54675 /* FontLiterals.swift in Sources */,
 				A4BC70342ADD7A3300E54675 /* DetailView.swift in Sources */,
 				A4BC702E2ADD7A1100E54675 /* MainView.swift in Sources */,
 				A4BC70112ADD72F200E54675 /* AppDelegate.swift in Sources */,
+				A4BC70442ADD816C00E54675 /* ImageLiterals.swift in Sources */,
+				A4BC704A2ADD83BD00E54675 /* UIColor+.swift in Sources */,
+				A4BC70422ADD814700E54675 /* UIView+.swift in Sources */,
 				A4BC70132ADD72F200E54675 /* SceneDelegate.swift in Sources */,
+				A4BC70462ADD81CD00E54675 /* UIImage+.swift in Sources */,
 				A4BC70302ADD7A1C00E54675 /* MainViewController.swift in Sources */,
 				A4BC70382ADD7A4800E54675 /* DetailViewController.swift in Sources */,
+				A4BC70482ADD837300E54675 /* ColorLiterals.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
