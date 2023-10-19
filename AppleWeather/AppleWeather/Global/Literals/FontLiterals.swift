@@ -8,11 +8,11 @@
 import UIKit
 
 struct FontName {
-    static let SFProDisplayBold = "SF-Pro-Display-Bold"
-    static let SFProDisplayLight = "SF-Pro-Display-Light"
-    static let SFProDisplayMedium = "SF-Pro-Display-Medium"
-    static let SFProDisplayRegular = "SF-Pro-Display-Regular"
-    static let SFProDisplayThin = "SF-Pro-Display-Thin"
+    static let SFProDisplayBold = "SFProDisplay-Bold"
+    static let SFProDisplayLight = "SFProDisplay-Light"
+    static let SFProDisplayMedium = "SFProDisplay-Medium"
+    static let SFProDisplayRegular = "SFProDisplay-Regular"
+    static let SFProDisplayThin = "SFProDisplay-Thin"
 }
 
 extension UIFont {
