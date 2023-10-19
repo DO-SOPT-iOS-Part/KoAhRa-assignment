@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A414CD842AE018C700182C40 /* WeatherEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A414CD832AE018C700182C40 /* WeatherEntity.swift */; };
+		A414CD882AE1506300182C40 /* WeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A414CD872AE1506300182C40 /* WeatherView.swift */; };
 		A4BC70112ADD72F200E54675 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BC70102ADD72F200E54675 /* AppDelegate.swift */; };
 		A4BC70132ADD72F200E54675 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BC70122ADD72F200E54675 /* SceneDelegate.swift */; };
 		A4BC701A2ADD72F600E54675 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A4BC70192ADD72F600E54675 /* Assets.xcassets */; };
@@ -32,6 +33,7 @@
 
 /* Begin PBXFileReference section */
 		A414CD832AE018C700182C40 /* WeatherEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherEntity.swift; sourceTree = "<group>"; };
+		A414CD872AE1506300182C40 /* WeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherView.swift; sourceTree = "<group>"; };
 		A4BC700D2ADD72F200E54675 /* AppleWeather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppleWeather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4BC70102ADD72F200E54675 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A4BC70122ADD72F200E54675 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -178,6 +180,7 @@
 		A4BC702C2ADD7A0700E54675 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A414CD872AE1506300182C40 /* WeatherView.swift */,
 				A4BC702D2ADD7A1100E54675 /* MainView.swift */,
 			);
 			path = View;
@@ -317,6 +320,7 @@
 				A4BC702E2ADD7A1100E54675 /* MainView.swift in Sources */,
 				A4BC70112ADD72F200E54675 /* AppDelegate.swift in Sources */,
 				A414CD842AE018C700182C40 /* WeatherEntity.swift in Sources */,
+				A414CD882AE1506300182C40 /* WeatherView.swift in Sources */,
 				A4BC70442ADD816C00E54675 /* ImageLiterals.swift in Sources */,
 				A4BC704A2ADD83BD00E54675 /* UIColor+.swift in Sources */,
 				A4BC70422ADD814700E54675 /* UIView+.swift in Sources */,
