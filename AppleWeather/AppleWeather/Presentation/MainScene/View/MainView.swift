@@ -18,12 +18,6 @@ final class MainView: UIView {
         return view
     }()
     
-    let contentView: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-    
     lazy var firstWeather: WeatherView = {
         let view = WeatherView()
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(weatherTapped))
@@ -51,19 +45,12 @@ final class MainView: UIView {
 extension MainView {
     func setHierarchy() {
         addSubview(scrollView)
-        scrollView.addSubview(contentView)
-        contentView.addSubview(firstWeather)
+        scrollView.addSubview(firstWeather)
     }
     
     func setLayout() {
         scrollView.snp.makeConstraints {
             $0.edges.equalTo(safeAreaLayoutGuide)
-        }
-        
-        contentView.snp.makeConstraints {
-            $0.top.bottom.equalTo(scrollView.contentLayoutGuide)
-            $0.centerX.equalToSuperview()
-            $0.height.greaterThanOrEqualTo(self.snp.height).priority(.low)
         }
         
         firstWeather.snp.makeConstraints {
