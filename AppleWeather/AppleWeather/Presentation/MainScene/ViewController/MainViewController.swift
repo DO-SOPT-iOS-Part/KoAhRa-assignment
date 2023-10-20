@@ -30,5 +30,7 @@ extension MainViewController {
     
     func setDataBind() {
         mainView.firstWeather.setDataBind(model: weatherEntity[0])
+        mainView.secondWeather.setDataBind(model: weatherEntity[1])
+        mainView.thirdWeather.setDataBind(model: weatherEntity[2])
     }
 }

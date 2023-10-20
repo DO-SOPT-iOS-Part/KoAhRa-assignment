@@ -26,6 +26,22 @@ final class MainView: UIView {
         return view
     }()
     
+    lazy var secondWeather: WeatherView = {
+        let view = WeatherView()
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(weatherTapped))
+        view.addGestureRecognizer(tapGesture)
+        view.isUserInteractionEnabled = true
+        return view
+    }()
+    
+    lazy var thirdWeather: WeatherView = {
+        let view = WeatherView()
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(weatherTapped))
+        view.addGestureRecognizer(tapGesture)
+        view.isUserInteractionEnabled = true
+        return view
+    }()
+    
     // MARK: - Life Cycles
     
     override init(frame: CGRect) {
@@ -44,8 +60,8 @@ final class MainView: UIView {
 // MARK: - Extensions
 extension MainView {
     func setHierarchy() {
+        scrollView.addSubviews(firstWeather, secondWeather, thirdWeather)
         addSubview(scrollView)
-        scrollView.addSubview(firstWeather)
     }
     
     func setLayout() {
@@ -55,6 +71,19 @@ extension MainView {
         
         firstWeather.snp.makeConstraints {
             $0.top.equalToSuperview().inset(50)
+            $0.centerX.equalToSuperview().inset(20)
+            $0.height.equalTo(117)
+        }
+        
+        secondWeather.snp.makeConstraints {
+            $0.top.equalTo(firstWeather.snp.bottom).offset(16)
+            $0.centerX.equalToSuperview().inset(20)
+            $0.height.equalTo(117)
+        }
+        
+        thirdWeather.snp.makeConstraints {
+            $0.top.equalTo(secondWeather.snp.bottom).offset(16)
+            $0.bottom.equalToSuperview()
             $0.centerX.equalToSuperview().inset(20)
             $0.height.equalTo(117)
         }
