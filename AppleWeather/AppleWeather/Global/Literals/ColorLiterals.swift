@@ -12,7 +12,11 @@ extension UIColor {
         return UIColor(hex: "#FFFFFF")
     }
     
-    static var WeatherGray: UIColor {
+    static var WeatherGray1: UIColor {
         return UIColor(hex: "#8C8C8C")
+    }
+    
+    static var WeatherGray2: UIColor {
+        return UIColor(hex: "#1A1A1A")
     }
 }
