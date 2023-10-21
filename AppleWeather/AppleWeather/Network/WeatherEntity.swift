@@ -57,6 +57,28 @@ extension WeatherEntity {
                 DetailWeather(time: 2, weather: "흐림", temp: 17),
                 DetailWeather(time: 3, weather: "흐림", temp: 15),
                 DetailWeather(time: 4, weather: "흐림", temp: 15)
+            ]),
+            WeatherEntity(location: "하남시", weather: "흐림", temp: 16, tempHigh: 21, tempLow: 7, detailWeather: [
+                DetailWeather(time: 20, weather: "흐림", temp: 16),
+                DetailWeather(time: 21, weather: "흐림", temp: 14),
+                DetailWeather(time: 22, weather: "흐림", temp: 12),
+                DetailWeather(time: 23, weather: "흐림", temp: 12),
+                DetailWeather(time: 0, weather: "흐림", temp: 11),
+                DetailWeather(time: 1, weather: "흐림", temp: 10),
+                DetailWeather(time: 2, weather: "흐림", temp: 10),
+                DetailWeather(time: 3, weather: "흐림", temp: 8),
+                DetailWeather(time: 4, weather: "흐림", temp: 7)
+            ]),
+            WeatherEntity(location: "하남시", weather: "흐림", temp: 16, tempHigh: 21, tempLow: 7, detailWeather: [
+                DetailWeather(time: 20, weather: "흐림", temp: 16),
+                DetailWeather(time: 21, weather: "흐림", temp: 14),
+                DetailWeather(time: 22, weather: "흐림", temp: 12),
+                DetailWeather(time: 23, weather: "흐림", temp: 12),
+                DetailWeather(time: 0, weather: "흐림", temp: 11),
+                DetailWeather(time: 1, weather: "흐림", temp: 10),
+                DetailWeather(time: 2, weather: "흐림", temp: 10),
+                DetailWeather(time: 3, weather: "흐림", temp: 8),
+                DetailWeather(time: 4, weather: "흐림", temp: 7)
             ])
         ]
     }
