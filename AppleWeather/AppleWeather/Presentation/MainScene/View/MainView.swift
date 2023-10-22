@@ -8,7 +8,15 @@
 import UIKit
 import SnapKit
 
+protocol MainDelegate: AnyObject {
+    func weatherTapped(idx: Int)
+}
+
 final class MainView: UIView {
+    
+    // MARK: - Properties
+    
+    weak var mainDelegate: MainDelegate?
     
     // MARK: - UI Components
     
@@ -166,8 +174,12 @@ extension MainView {
         }
     }
     
-    @objc
-    func weatherTapped() {
-        print("✅")
+    @objc func weatherTapped(sender: UITapGestureRecognizer) {
+        guard let tappedView = sender.view as? WeatherView else {
+            return
+        }
+        if let index = [firstWeather, secondWeather, thirdWeather, fourthWeather, fifthWeather].firstIndex(of: tappedView) {
+            mainDelegate?.weatherTapped(idx: index)
+        }
     }
 }

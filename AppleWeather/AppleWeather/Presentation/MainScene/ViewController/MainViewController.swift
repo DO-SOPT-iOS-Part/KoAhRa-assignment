@@ -9,13 +9,13 @@ import UIKit
 
 final class MainViewController: UIViewController {
     
+    // MARK: - UI Components
+    
     private let mainView = MainView()
     
     private let weatherEntity : [WeatherEntity] = WeatherEntity.mainEntityDummy()
     
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
+    // MARK: - Life Cycles
     
     override func loadView() {
         super.loadView()
@@ -26,11 +26,17 @@ final class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        setDelegate()
         setDataBind()
     }
 }
 
+// MARK: - Extensions
+
 extension MainViewController {
+    func setDelegate() {
+        mainView.mainDelegate = self
+    }
     
     func setDataBind() {
         mainView.firstWeather.setDataBind(model: weatherEntity[0])
@@ -39,4 +45,13 @@ extension MainViewController {
         mainView.fourthWeather.setDataBind(model: weatherEntity[3])
         mainView.fifthWeather.setDataBind(model: weatherEntity[4])
     }
+}
+
+extension MainViewController: MainDelegate {
+    func weatherTapped(idx: Int) {
+        let nav = DetailViewController()
+        nav.index = idx
+        self.navigationController?.pushViewController(nav, animated: true)
+    }
+    
 }
