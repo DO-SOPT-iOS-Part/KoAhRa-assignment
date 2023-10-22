@@ -7,23 +7,48 @@
 
 import UIKit
 
-class DetailViewController: UIViewController {
+final class DetailViewController: UIViewController {
+    
+    // MARK: - Properties
+    
+    var index: Int = 0
+    
+    private let weatherEntity : [WeatherEntity] = WeatherEntity.mainEntityDummy()
+    
+    // MARK: - UI Components
+    
+    private let detailView = DetailView()
+    
+    // MARK: - Life Cycles
+    
+    override func loadView() {
+        super.loadView()
+        
+        self.view = detailView
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        setDataBind()
     }
-    
 
-    /*
-    // MARK: - Navigation
+}
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+// MARK: - Extensions
+
+extension DetailViewController {
+    func setDataBind() {
+        detailView.setDataBind(model: weatherEntity[index])
+        detailView.timeView1.setDataBind(model: weatherEntity[index].detailWeather[0])
+        detailView.timeView1.timeLabel.text = "Now"
+        detailView.timeView2.setDataBind(model: weatherEntity[index].detailWeather[1])
+        detailView.timeView3.setDataBind(model: weatherEntity[index].detailWeather[2])
+        detailView.timeView4.setDataBind(model: weatherEntity[index].detailWeather[3])
+        detailView.timeView5.setDataBind(model: weatherEntity[index].detailWeather[4])
+        detailView.timeView6.setDataBind(model: weatherEntity[index].detailWeather[5])
+        detailView.timeView7.setDataBind(model: weatherEntity[index].detailWeather[6])
+        detailView.timeView8.setDataBind(model: weatherEntity[index].detailWeather[7])
+        detailView.timeView9.setDataBind(model: weatherEntity[index].detailWeather[8])
     }
-    */
-
 }

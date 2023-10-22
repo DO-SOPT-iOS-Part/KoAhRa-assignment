@@ -19,4 +19,12 @@ extension UIColor {
     static var WeatherGray2: UIColor {
         return UIColor(hex: "#1A1A1A")
     }
+    
+    static var WeatherGray3: UIColor {
+        return UIColor(hex: "#8E9295")
+    }
+    
+    static var WeatherGray4: UIColor {
+        return UIColor(hex: "#1E252D")
+    }
 }

@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		A414CD842AE018C700182C40 /* WeatherEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A414CD832AE018C700182C40 /* WeatherEntity.swift */; };
 		A414CD882AE1506300182C40 /* WeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A414CD872AE1506300182C40 /* WeatherView.swift */; };
+		A414CD8E2AE4315800182C40 /* WeatherDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A414CD8D2AE4315800182C40 /* WeatherDetailView.swift */; };
+		A414CD902AE4D67900182C40 /* UIStackView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A414CD8F2AE4D67900182C40 /* UIStackView+.swift */; };
 		A4BC70112ADD72F200E54675 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BC70102ADD72F200E54675 /* AppDelegate.swift */; };
 		A4BC70132ADD72F200E54675 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BC70122ADD72F200E54675 /* SceneDelegate.swift */; };
 		A4BC701A2ADD72F600E54675 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A4BC70192ADD72F600E54675 /* Assets.xcassets */; };
@@ -34,6 +36,8 @@
 /* Begin PBXFileReference section */
 		A414CD832AE018C700182C40 /* WeatherEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherEntity.swift; sourceTree = "<group>"; };
 		A414CD872AE1506300182C40 /* WeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherView.swift; sourceTree = "<group>"; };
+		A414CD8D2AE4315800182C40 /* WeatherDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDetailView.swift; sourceTree = "<group>"; };
+		A414CD8F2AE4D67900182C40 /* UIStackView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+.swift"; sourceTree = "<group>"; };
 		A4BC700D2ADD72F200E54675 /* AppleWeather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppleWeather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4BC70102ADD72F200E54675 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A4BC70122ADD72F200E54675 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -189,6 +193,7 @@
 		A4BC70312ADD7A2200E54675 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A414CD8D2AE4315800182C40 /* WeatherDetailView.swift */,
 				A4BC70332ADD7A3300E54675 /* DetailView.swift */,
 			);
 			path = View;
@@ -218,6 +223,7 @@
 				A4BC70412ADD814700E54675 /* UIView+.swift */,
 				A4BC70452ADD81CD00E54675 /* UIImage+.swift */,
 				A4BC70492ADD83BD00E54675 /* UIColor+.swift */,
+				A414CD8F2AE4D67900182C40 /* UIStackView+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -322,11 +328,13 @@
 				A414CD842AE018C700182C40 /* WeatherEntity.swift in Sources */,
 				A414CD882AE1506300182C40 /* WeatherView.swift in Sources */,
 				A4BC70442ADD816C00E54675 /* ImageLiterals.swift in Sources */,
+				A414CD902AE4D67900182C40 /* UIStackView+.swift in Sources */,
 				A4BC704A2ADD83BD00E54675 /* UIColor+.swift in Sources */,
 				A4BC70422ADD814700E54675 /* UIView+.swift in Sources */,
 				A4BC70132ADD72F200E54675 /* SceneDelegate.swift in Sources */,
 				A4BC70462ADD81CD00E54675 /* UIImage+.swift in Sources */,
 				A4BC70302ADD7A1C00E54675 /* MainViewController.swift in Sources */,
+				A414CD8E2AE4315800182C40 /* WeatherDetailView.swift in Sources */,
 				A4BC70382ADD7A4800E54675 /* DetailViewController.swift in Sources */,
 				A4BC70482ADD837300E54675 /* ColorLiterals.swift in Sources */,
 			);
@@ -473,6 +481,7 @@
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -501,6 +510,7 @@
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
