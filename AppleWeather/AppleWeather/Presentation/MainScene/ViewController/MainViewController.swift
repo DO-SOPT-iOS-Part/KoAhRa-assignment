@@ -49,9 +49,8 @@ extension MainViewController {
 
 extension MainViewController: MainDelegate {
     func weatherTapped(idx: Int) {
-        let nav = DetailViewController()
-        nav.index = idx
+        let nav = DetailPageViewController()
+        nav.initialPage = idx
         self.navigationController?.pushViewController(nav, animated: true)
     }
-    
 }

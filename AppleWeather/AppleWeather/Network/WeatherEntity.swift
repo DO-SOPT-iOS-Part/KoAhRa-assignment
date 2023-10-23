@@ -58,7 +58,7 @@ extension WeatherEntity {
                 DetailWeather(time: 3, weather: "rain", temp: 15),
                 DetailWeather(time: 4, weather: "cloud", temp: 15)
             ]),
-            WeatherEntity(location: "하남시", weather: "흐림", temp: 16, tempHigh: 21, tempLow: 7, detailWeather: [
+            WeatherEntity(location: "노원시", weather: "흐림", temp: 16, tempHigh: 21, tempLow: 7, detailWeather: [
                 DetailWeather(time: 20, weather: "rain", temp: 16),
                 DetailWeather(time: 21, weather: "cloud", temp: 14),
                 DetailWeather(time: 22, weather: "lightrain", temp: 12),
@@ -69,7 +69,7 @@ extension WeatherEntity {
                 DetailWeather(time: 3, weather: "lightrain", temp: 8),
                 DetailWeather(time: 4, weather: "thunder", temp: 7)
             ]),
-            WeatherEntity(location: "하남시", weather: "흐림", temp: 16, tempHigh: 21, tempLow: 7, detailWeather: [
+            WeatherEntity(location: "의정부시", weather: "흐림", temp: 16, tempHigh: 21, tempLow: 7, detailWeather: [
                 DetailWeather(time: 20, weather: "rain", temp: 16),
                 DetailWeather(time: 21, weather: "cloud", temp: 14),
                 DetailWeather(time: 22, weather: "lightrain", temp: 12),

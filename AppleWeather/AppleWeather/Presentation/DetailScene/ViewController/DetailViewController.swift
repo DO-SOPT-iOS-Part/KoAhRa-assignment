@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class DetailViewController: UIViewController {
+class DetailViewController: UIViewController {
     
     // MARK: - Properties
     
@@ -30,7 +30,6 @@ final class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        setDataBind()
     }
 
 }
@@ -38,7 +37,7 @@ final class DetailViewController: UIViewController {
 // MARK: - Extensions
 
 extension DetailViewController {
-    func setDataBind() {
+    func setDataBind(index: Int) {
         detailView.setDataBind(model: weatherEntity[index])
         detailView.timeView1.setDataBind(model: weatherEntity[index].detailWeather[0])
         detailView.timeView1.timeLabel.text = "Now"
