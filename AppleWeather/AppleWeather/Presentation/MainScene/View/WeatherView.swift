@@ -122,6 +122,25 @@ extension WeatherView {
         }
     }
     
+    func setListDataBind(model: WeatherEntity) {
+        let formatterTime = DateFormatter()
+        formatterTime.dateFormat = "HHmm"
+        let currentTime = formatterTime.string(from: Date())
+        let hour = Int(currentTime.prefix(2))!
+        let min = currentTime.suffix(2)
+        if (hour > 12) {
+            locationLabel.text = "오후 \(hour-12):\(min)"
+        } else {
+            locationLabel.text = "오전 \(hour):\(min)"
+        }
+        
+        titleLabel.text = model.location
+        weatherLabel.text = model.weather
+        tempLabel.text = "\(model.temp)°"
+        tempLowLabel.text = "최저 : \(model.tempLow)°"
+        tempHighLabel.text = "최고 : \(model.tempHigh)°"
+    }
+    
     func setDataBind(model: WeatherEntity) {
         locationLabel.text = model.location
         weatherLabel.text = model.weather
