@@ -62,6 +62,7 @@ final class DetailPageViewController: UIPageViewController {
         
         setPage()
         setUI()
+        setDelegate()
         setHierarchy()
         setLayout()
         setToolBar()
@@ -83,9 +84,12 @@ extension DetailPageViewController {
         self.pageControl.currentPage = initialPage
     }
     
-    func setUI() {
+    func setDelegate() {
         self.dataSource = self
         self.delegate = self
+    }
+    
+    func setUI() {
         self.setViewControllers([pages[initialPage]], direction: .forward, animated: true)
     }
     

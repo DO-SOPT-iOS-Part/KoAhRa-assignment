@@ -18,6 +18,9 @@ final class MainView: UIView {
     
     weak var mainDelegate: MainDelegate?
     
+    var searchArray: [String] = []
+    private var weatherEntity : [WeatherEntity] = WeatherEntity.mainEntityDummy()
+    
     // MARK: - UI Components
     
     private let scrollView: UIScrollView = {
@@ -97,13 +100,22 @@ final class MainView: UIView {
         return view
     }()
     
+    private let weatherStackView: UIStackView = {
+        let stackview = UIStackView()
+        stackview.axis = .vertical
+        stackview.spacing = 16
+        return stackview
+    }()
+    
     // MARK: - Life Cycles
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
         setHierarchy()
+        setDelegate()
         setLayout()
+        setSearhArray()
     }
     
     @available(*, unavailable)
@@ -115,8 +127,19 @@ final class MainView: UIView {
 // MARK: - Extensions
 extension MainView {
     func setHierarchy() {
-        scrollView.addSubviews(firstWeather, secondWeather, thirdWeather, fourthWeather, fifthWeather)
+        weatherStackView.addArrangedSubviews(firstWeather, secondWeather, thirdWeather, fourthWeather, fifthWeather)
+        scrollView.addSubview(weatherStackView)
         self.addSubviews(moreButton, titleLabel, searchBar, scrollView)
+    }
+    
+    func setDelegate() {
+        self.searchBar.delegate = self
+    }
+    
+    func setSearhArray() {
+        for i in 0..<weatherEntity.count {
+            self.searchArray.append(weatherEntity[i].location)
+        }
     }
     
     func setLayout() {
@@ -142,35 +165,9 @@ extension MainView {
             $0.leading.trailing.bottom.equalToSuperview()
         }
         
-        firstWeather.snp.makeConstraints {
-            $0.top.equalToSuperview()
+        weatherStackView.snp.makeConstraints {
+            $0.top.bottom.equalToSuperview()
             $0.leading.trailing.equalToSuperview().inset(20)
-            $0.height.equalTo(117)
-        }
-        
-        secondWeather.snp.makeConstraints {
-            $0.top.equalTo(firstWeather.snp.bottom).offset(16)
-            $0.leading.trailing.equalToSuperview().inset(20)
-            $0.height.equalTo(117)
-        }
-        
-        thirdWeather.snp.makeConstraints {
-            $0.top.equalTo(secondWeather.snp.bottom).offset(16)
-            $0.leading.trailing.equalToSuperview().inset(20)
-            $0.height.equalTo(117)
-        }
-        
-        fourthWeather.snp.makeConstraints {
-            $0.top.equalTo(thirdWeather.snp.bottom).offset(16)
-            $0.leading.trailing.equalToSuperview().inset(20)
-            $0.height.equalTo(117)
-        }
-        
-        fifthWeather.snp.makeConstraints {
-            $0.top.equalTo(fourthWeather.snp.bottom).offset(16)
-            $0.bottom.equalToSuperview()
-            $0.leading.trailing.equalToSuperview().inset(20)
-            $0.height.equalTo(117)
         }
     }
     
@@ -181,5 +178,40 @@ extension MainView {
         if let index = [firstWeather, secondWeather, thirdWeather, fourthWeather, fifthWeather].firstIndex(of: tappedView) {
             mainDelegate?.weatherTapped(idx: index)
         }
+    }
+}
+
+extension MainView: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        guard let text = searchBar.text else { return }
+        [firstWeather, secondWeather, thirdWeather, fourthWeather, fifthWeather].forEach {
+            $0.isHidden = true
+        }
+        for (index, location) in searchArray.enumerated() {
+            let isMatch = location.lowercased().contains(text)
+            switch index {
+            case 0:
+                firstWeather.isHidden = !isMatch
+            case 1:
+                secondWeather.isHidden = !isMatch
+            case 2:
+                thirdWeather.isHidden = !isMatch
+            case 3:
+                fourthWeather.isHidden = !isMatch
+            case 4:
+                fifthWeather.isHidden = !isMatch
+            default:
+                break
+            }
+        }
+        if text.isEmpty {
+            [firstWeather, secondWeather, thirdWeather, fourthWeather, fifthWeather].forEach {
+                $0.isHidden = false
+            }
+        }
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
     }
 }
