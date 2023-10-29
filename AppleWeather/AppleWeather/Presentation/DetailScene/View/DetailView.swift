@@ -12,11 +12,7 @@ class DetailView: UIView {
     
     // MARK: - UI Components
     
-    private let backgroundImage: UIImageView = {
-        let image = UIImageView()
-        image.image = ImageLiterals.Detail.img_bigBackground
-        return image
-    }()
+    private let backgroundImage: UIImageView = UIImageView(image: ImageLiterals.Detail.img_bigBackground)
     
     var locationDetailLabel: UILabel = {
         let label = UILabel()
