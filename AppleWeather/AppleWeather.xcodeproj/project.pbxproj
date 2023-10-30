@@ -8,10 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		A414CD842AE018C700182C40 /* WeatherEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A414CD832AE018C700182C40 /* WeatherEntity.swift */; };
-		A414CD882AE1506300182C40 /* WeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A414CD872AE1506300182C40 /* WeatherView.swift */; };
 		A414CD8E2AE4315800182C40 /* WeatherDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A414CD8D2AE4315800182C40 /* WeatherDetailView.swift */; };
 		A414CD902AE4D67900182C40 /* UIStackView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A414CD8F2AE4D67900182C40 /* UIStackView+.swift */; };
 		A414CD922AE68C4600182C40 /* DetailPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A414CD912AE68C4600182C40 /* DetailPageViewController.swift */; };
+		A414CDBC2AEE4D9C00182C40 /* UITableViewRegisterable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A414CDBB2AEE4D9C00182C40 /* UITableViewRegisterable.swift */; };
+		A414CDBE2AEE4E1600182C40 /* NSObject+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A414CDBD2AEE4E1600182C40 /* NSObject+.swift */; };
+		A414CDC02AEE4E5100182C40 /* UICollectionViewRegisterable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A414CDBF2AEE4E5100182C40 /* UICollectionViewRegisterable.swift */; };
+		A414CDC22AEF858700182C40 /* WeatherCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A414CDC12AEF858700182C40 /* WeatherCollectionViewCell.swift */; };
 		A4BC70112ADD72F200E54675 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BC70102ADD72F200E54675 /* AppDelegate.swift */; };
 		A4BC70132ADD72F200E54675 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BC70122ADD72F200E54675 /* SceneDelegate.swift */; };
 		A4BC701A2ADD72F600E54675 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A4BC70192ADD72F600E54675 /* Assets.xcassets */; };
@@ -36,10 +39,13 @@
 
 /* Begin PBXFileReference section */
 		A414CD832AE018C700182C40 /* WeatherEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherEntity.swift; sourceTree = "<group>"; };
-		A414CD872AE1506300182C40 /* WeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherView.swift; sourceTree = "<group>"; };
 		A414CD8D2AE4315800182C40 /* WeatherDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDetailView.swift; sourceTree = "<group>"; };
 		A414CD8F2AE4D67900182C40 /* UIStackView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+.swift"; sourceTree = "<group>"; };
 		A414CD912AE68C4600182C40 /* DetailPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPageViewController.swift; sourceTree = "<group>"; };
+		A414CDBB2AEE4D9C00182C40 /* UITableViewRegisterable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewRegisterable.swift; sourceTree = "<group>"; };
+		A414CDBD2AEE4E1600182C40 /* NSObject+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject+.swift"; sourceTree = "<group>"; };
+		A414CDBF2AEE4E5100182C40 /* UICollectionViewRegisterable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICollectionViewRegisterable.swift; sourceTree = "<group>"; };
+		A414CDC12AEF858700182C40 /* WeatherCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCollectionViewCell.swift; sourceTree = "<group>"; };
 		A4BC700D2ADD72F200E54675 /* AppleWeather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppleWeather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4BC70102ADD72F200E54675 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A4BC70122ADD72F200E54675 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -83,6 +89,23 @@
 			path = Network;
 			sourceTree = "<group>";
 		};
+		A414CDB72AEE4BFE00182C40 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				A414CDC12AEF858700182C40 /* WeatherCollectionViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		A414CDBA2AEE4D4600182C40 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				A414CDBB2AEE4D9C00182C40 /* UITableViewRegisterable.swift */,
+				A414CDBF2AEE4E5100182C40 /* UICollectionViewRegisterable.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
 		A4BC70042ADD72F200E54675 = {
 			isa = PBXGroup;
 			children = (
@@ -123,6 +146,7 @@
 		A4BC70252ADD78DF00E54675 /* Global */ = {
 			isa = PBXGroup;
 			children = (
+				A414CDBA2AEE4D4600182C40 /* Protocol */,
 				A4BC703E2ADD810F00E54675 /* Extension */,
 				A4BC703D2ADD810100E54675 /* Literals */,
 				A4BC70272ADD793700E54675 /* Resources */,
@@ -160,6 +184,7 @@
 		A4BC70292ADD797A00E54675 /* MainScene */ = {
 			isa = PBXGroup;
 			children = (
+				A414CDB72AEE4BFE00182C40 /* Cell */,
 				A4BC702C2ADD7A0700E54675 /* View */,
 				A4BC702B2ADD79FF00E54675 /* ViewController */,
 			);
@@ -186,7 +211,6 @@
 		A4BC702C2ADD7A0700E54675 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				A414CD872AE1506300182C40 /* WeatherView.swift */,
 				A4BC702D2ADD7A1100E54675 /* MainView.swift */,
 			);
 			path = View;
@@ -227,6 +251,7 @@
 				A4BC70452ADD81CD00E54675 /* UIImage+.swift */,
 				A4BC70492ADD83BD00E54675 /* UIColor+.swift */,
 				A414CD8F2AE4D67900182C40 /* UIStackView+.swift */,
+				A414CDBD2AEE4E1600182C40 /* NSObject+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -326,20 +351,23 @@
 			files = (
 				A4BC70402ADD813900E54675 /* FontLiterals.swift in Sources */,
 				A4BC70342ADD7A3300E54675 /* DetailView.swift in Sources */,
+				A414CDC02AEE4E5100182C40 /* UICollectionViewRegisterable.swift in Sources */,
 				A414CD922AE68C4600182C40 /* DetailPageViewController.swift in Sources */,
+				A414CDBE2AEE4E1600182C40 /* NSObject+.swift in Sources */,
 				A4BC702E2ADD7A1100E54675 /* MainView.swift in Sources */,
 				A4BC70112ADD72F200E54675 /* AppDelegate.swift in Sources */,
 				A414CD842AE018C700182C40 /* WeatherEntity.swift in Sources */,
-				A414CD882AE1506300182C40 /* WeatherView.swift in Sources */,
 				A4BC70442ADD816C00E54675 /* ImageLiterals.swift in Sources */,
 				A414CD902AE4D67900182C40 /* UIStackView+.swift in Sources */,
 				A4BC704A2ADD83BD00E54675 /* UIColor+.swift in Sources */,
+				A414CDC22AEF858700182C40 /* WeatherCollectionViewCell.swift in Sources */,
 				A4BC70422ADD814700E54675 /* UIView+.swift in Sources */,
 				A4BC70132ADD72F200E54675 /* SceneDelegate.swift in Sources */,
 				A4BC70462ADD81CD00E54675 /* UIImage+.swift in Sources */,
 				A4BC70302ADD7A1C00E54675 /* MainViewController.swift in Sources */,
 				A414CD8E2AE4315800182C40 /* WeatherDetailView.swift in Sources */,
 				A4BC70382ADD7A4800E54675 /* DetailViewController.swift in Sources */,
+				A414CDBC2AEE4D9C00182C40 /* UITableViewRegisterable.swift in Sources */,
 				A4BC70482ADD837300E54675 /* ColorLiterals.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
