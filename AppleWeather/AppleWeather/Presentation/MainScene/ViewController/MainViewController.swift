@@ -101,7 +101,7 @@ extension MainViewController: UICollectionViewDataSource {
         
         let data: WeatherEntity
         if isFiltering {
-            data = weatherEntity.first { $0.location == filteredArray[indexPath.item] }!
+            data = weatherEntity.first { $0.location == filteredArray[indexPath.item] } ?? weatherEntity[0]
         } else {
             data = weatherEntity[indexPath.item]
         }
