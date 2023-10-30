@@ -1,14 +1,19 @@
 //
-//  WeatherView.swift
+//  WeatherCollectionViewCell.swift
 //  AppleWeather
 //
-//  Created by 고아라 on 2023/10/19.
+//  Created by 고아라 on 2023/10/30.
 //
 
 import UIKit
+
 import SnapKit
 
-class WeatherView: UIView {
+class WeatherCollectionViewCell: UICollectionViewCell, UICollectionViewRegisterable {
+    
+    // MARK: - Properties
+    
+    static let isFromNib: Bool = false
     
     // MARK: - UI Components
     
@@ -67,23 +72,27 @@ class WeatherView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
+
+        setUI()
         setHierarchy()
         setLayout()
     }
     
     @available(*, unavailable)
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: coder)
     }
 }
 
 // MARK: - Extensions
-extension WeatherView {
+extension WeatherCollectionViewCell {
+    func setUI() {
+        self.backgroundColor = .black
+    }
     
     func setHierarchy() {
         backgroundImage.addSubviews(titleLabel, locationLabel, weatherLabel, tempLabel, tempLowLabel, tempHighLabel)
-        addSubview(backgroundImage)
+        contentView.addSubview(backgroundImage)
     }
     
     func setLayout() {
@@ -122,25 +131,6 @@ extension WeatherView {
         }
     }
     
-    func setListDataBind(model: WeatherEntity) {
-        let formatterTime = DateFormatter()
-        formatterTime.dateFormat = "HHmm"
-        let currentTime = formatterTime.string(from: Date())
-        let hour = Int(currentTime.prefix(2))!
-        let min = currentTime.suffix(2)
-        if (hour > 12) {
-            locationLabel.text = "오후 \(hour-12):\(min)"
-        } else {
-            locationLabel.text = "오전 \(hour):\(min)"
-        }
-        
-        titleLabel.text = model.location
-        weatherLabel.text = model.weather
-        tempLabel.text = "\(model.temp)°"
-        tempLowLabel.text = "최저 : \(model.tempLow)°"
-        tempHighLabel.text = "최고 : \(model.tempHigh)°"
-    }
-    
     func setDataBind(model: WeatherEntity) {
         locationLabel.text = model.location
         weatherLabel.text = model.weather
@@ -149,3 +139,4 @@ extension WeatherView {
         tempHighLabel.text = "최고 : \(model.tempHigh)°"
     }
 }
+
