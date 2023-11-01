@@ -7,47 +7,113 @@
 
 import UIKit
 
+import SnapKit
+
 class DetailViewController: UIViewController {
     
     // MARK: - Properties
     
     var index: Int = 0
     
+    var tt: Int = 0
+    
     private let weatherEntity : [WeatherEntity] = WeatherEntity.mainEntityDummy()
+    
+    private typealias SectionType = Section
+    
+    @frozen
+    private enum Section: CaseIterable {
+        case hour
+    }
     
     // MARK: - UI Components
     
-    private let detailView = DetailView()
+    private let backgroundImage: UIImageView = UIImageView(image: ImageLiterals.Detail.img_bigBackground)
+    private let detailTitleView = DetailTitleView()
+    private let detailCollectionView = DetailCollectionView()
+    private lazy var collectionView = detailCollectionView.DetailCollectionView
     
     // MARK: - Life Cycles
     
-    override func loadView() {
-        super.loadView()
-        
-        self.view = detailView
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        setHierarchy()
+        setLayout()
+        setDelegate()
     }
-
+    
 }
 
 // MARK: - Extensions
 
 extension DetailViewController {
+    func setHierarchy() {
+        view.addSubviews(backgroundImage, detailTitleView, collectionView)
+    }
+    
+    func setLayout() {
+        backgroundImage.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+        
+        detailTitleView.snp.makeConstraints {
+            $0.top.equalTo(view.safeAreaLayoutGuide).offset(34)
+            $0.leading.trailing.equalToSuperview()
+        }
+        
+        collectionView.snp.makeConstraints {
+            $0.top.equalTo(detailTitleView.snp.bottom).offset(44)
+            $0.leading.trailing.equalToSuperview().inset(20)
+            $0.bottom.equalToSuperview()
+        }
+    }
+    
+    func setDelegate() {
+        collectionView.delegate = self
+        collectionView.dataSource = self
+    }
+    
     func setDataBind(index: Int) {
-        detailView.setDataBind(model: weatherEntity[index])
-        detailView.timeView1.setDataBind(model: weatherEntity[index].detailWeather[0])
-        detailView.timeView1.timeLabel.text = "Now"
-        detailView.timeView2.setDataBind(model: weatherEntity[index].detailWeather[1])
-        detailView.timeView3.setDataBind(model: weatherEntity[index].detailWeather[2])
-        detailView.timeView4.setDataBind(model: weatherEntity[index].detailWeather[3])
-        detailView.timeView5.setDataBind(model: weatherEntity[index].detailWeather[4])
-        detailView.timeView6.setDataBind(model: weatherEntity[index].detailWeather[5])
-        detailView.timeView7.setDataBind(model: weatherEntity[index].detailWeather[6])
-        detailView.timeView8.setDataBind(model: weatherEntity[index].detailWeather[7])
-        detailView.timeView9.setDataBind(model: weatherEntity[index].detailWeather[8])
+        detailTitleView.setDataBind(model: weatherEntity[index])
+    }
+}
+
+extension DetailViewController: UICollectionViewDelegate {
+}
+
+extension DetailViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let sectionType = SectionType.allCases[indexPath.section]
+        switch sectionType {
+        case .hour:
+            let cell =
+            HourWeatherCollectionViewCell.dequeueReusableCell(collectionView: collectionView, indexPath: indexPath)
+            cell.setDataBind(model: weatherEntity[index].detailWeather[indexPath.row])
+            return cell
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        let sectionType = SectionType.allCases[section]
+        switch sectionType {
+        case .hour:
+            return weatherEntity[index].detailWeather.count
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        let sectionType = SectionType.allCases[indexPath.section]
+        switch sectionType {
+        case .hour:
+            let headerView = HourWeatherHeaderView.dequeueReusableHeaderView(collectionView: collectionView, indexPath: indexPath)
+            return headerView
+        }
+    }
+}
+
+extension DetailViewController: UICollectionViewDelegateFlowLayout {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return Section.allCases.count
     }
 }
