@@ -17,7 +17,7 @@ final class DetailCollectionView: UIView {
     
     @frozen
     private enum Section: CaseIterable {
-        case hour
+        case hour, day
     }
     
     // MARK: - UI Components
@@ -25,6 +25,7 @@ final class DetailCollectionView: UIView {
     lazy var DetailCollectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: self.setSectionLayout())
         collectionView.showsVerticalScrollIndicator = false
+        collectionView.showsHorizontalScrollIndicator = false
         collectionView.clipsToBounds = true
         collectionView.contentInsetAdjustmentBehavior = .never
         collectionView.isUserInteractionEnabled = true
@@ -64,6 +65,8 @@ private extension DetailCollectionView {
     func registerCell() {
         HourWeatherHeaderView.register(target: DetailCollectionView)
         HourWeatherCollectionViewCell.register(target: DetailCollectionView)
+        DayWeatherHeaderView.register(target: DetailCollectionView)
+        DayWeatherCollectionViewCell.register(target: DetailCollectionView)
     }
     
     func setSectionLayout() -> UICollectionViewLayout {
@@ -72,6 +75,8 @@ private extension DetailCollectionView {
             switch sectionType {
             case .hour:
                 return self.getLayoutHour()
+            case .day:
+                return self.getLayoutDay()
             }
         }
         layout.register(RectBackgroundView.self, forDecorationViewOfKind: "rectBackground")
@@ -111,7 +116,43 @@ private extension DetailCollectionView {
         section.boundarySupplementaryItems = [header]
         let sectionBackgroundDecoration = NSCollectionLayoutDecorationItem.background(elementKind: "rectBackground")
         section.decorationItems = [sectionBackgroundDecoration]
+        return section
+    }
+    
+    func getLayoutDay() -> NSCollectionLayoutSection {
+        let itemSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .absolute(55)
+        )
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
+        let groupSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .absolute(643)
+        )
+        let group = NSCollectionLayoutGroup.vertical(
+            layoutSize: groupSize,
+            subitems: [item]
+        )
+        
+        let headerSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .absolute(24)
+        )
+        let header = NSCollectionLayoutBoundarySupplementaryItem(
+            layoutSize: headerSize,
+            elementKind: UICollectionView.elementKindSectionHeader,
+            alignment: .top
+        )
+        header.contentInsets = NSDirectionalEdgeInsets(top: -8, leading: 0, bottom: 0, trailing: 0)
+        
+        let section = NSCollectionLayoutSection(group: group)
+        section.contentInsets = NSDirectionalEdgeInsets(top: 6, leading: 0, bottom: 10, trailing: 0)
+        section.orthogonalScrollingBehavior = .continuous
+        section.boundarySupplementaryItems = [header]
+        let sectionBackgroundDecoration = NSCollectionLayoutDecorationItem.background(elementKind: "rectBackground")
+        section.decorationItems = [sectionBackgroundDecoration]
+
         return section
     }
 }

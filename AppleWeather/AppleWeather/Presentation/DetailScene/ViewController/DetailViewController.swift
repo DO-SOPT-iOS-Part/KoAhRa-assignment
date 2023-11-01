@@ -23,7 +23,7 @@ class DetailViewController: UIViewController {
     
     @frozen
     private enum Section: CaseIterable {
-        case hour
+        case hour, day
     }
     
     // MARK: - UI Components
@@ -65,7 +65,7 @@ extension DetailViewController {
         collectionView.snp.makeConstraints {
             $0.top.equalTo(detailTitleView.snp.bottom).offset(44)
             $0.leading.trailing.equalToSuperview().inset(20)
-            $0.bottom.equalToSuperview()
+            $0.bottom.equalToSuperview().inset(67)
         }
     }
     
@@ -91,6 +91,11 @@ extension DetailViewController: UICollectionViewDataSource {
             HourWeatherCollectionViewCell.dequeueReusableCell(collectionView: collectionView, indexPath: indexPath)
             cell.setDataBind(model: weatherEntity[index].detailWeather[indexPath.row])
             return cell
+        case .day:
+            let cell =
+            DayWeatherCollectionViewCell.dequeueReusableCell(collectionView: collectionView, indexPath: indexPath)
+            cell.setDataBind(model: weatherEntity[index].dayWeather[indexPath.row])
+            return cell
         }
     }
     
@@ -99,6 +104,8 @@ extension DetailViewController: UICollectionViewDataSource {
         switch sectionType {
         case .hour:
             return weatherEntity[index].detailWeather.count
+        case .day:
+            return weatherEntity[index].dayWeather.count
         }
     }
     
@@ -107,6 +114,9 @@ extension DetailViewController: UICollectionViewDataSource {
         switch sectionType {
         case .hour:
             let headerView = HourWeatherHeaderView.dequeueReusableHeaderView(collectionView: collectionView, indexPath: indexPath)
+            return headerView
+        case .day:
+            let headerView = DayWeatherHeaderView.dequeueReusableHeaderView(collectionView: collectionView, indexPath: indexPath)
             return headerView
         }
     }

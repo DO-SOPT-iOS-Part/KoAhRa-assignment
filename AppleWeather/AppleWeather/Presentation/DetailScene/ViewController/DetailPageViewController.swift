@@ -29,9 +29,8 @@ final class DetailPageViewController: UIPageViewController {
     
     private let toolbar: UIToolbar = {
         let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
-        toolbar.backgroundColor = .clear
+        toolbar.backgroundColor = UIColor(hex: "#2A3040")
         toolbar.tintColor = .WeatherWhite
-        toolbar.barTintColor = .clear
         toolbar.setBackgroundImage(UIImage(), forToolbarPosition: .any, barMetrics: .default)
         toolbar.translatesAutoresizingMaskIntoConstraints = false
         return toolbar
@@ -94,19 +93,13 @@ extension DetailPageViewController {
     }
     
     func setHierarchy() {
-        view.addSubviews(toolbar, underlineView)
+        view.addSubview(toolbar)
     }
     
     func setLayout() {
         toolbar.snp.makeConstraints {
-            $0.bottom.leading.trailing.equalTo(view.safeAreaLayoutGuide)
+            $0.bottom.leading.trailing.equalToSuperview()
             $0.height.equalTo(62)
-        }
-        
-        underlineView.snp.makeConstraints {
-            $0.leading.trailing.equalToSuperview()
-            $0.bottom.equalTo(toolbar.snp.top)
-            $0.height.equalTo(1)
         }
     }
     
