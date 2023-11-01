@@ -11,6 +11,8 @@ import SnapKit
 
 final class HourWeatherHeaderView: UICollectionReusableView, UICollectionHeaderViewRegisterable {
     
+    // MARK: - Properties
+    
     static let isFromNib: Bool = false
     
     // MARK: - UI Components
