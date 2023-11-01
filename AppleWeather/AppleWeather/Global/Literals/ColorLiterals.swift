@@ -28,6 +28,10 @@ extension UIColor {
         return UIColor(hex: "#1E252D")
     }
     
+    static var WeatherGray5: UIColor {
+        return UIColor(hex: "#62666D")
+    }
+    
     static var WeatherBlue: UIColor {
         return UIColor(hex: "#81CFFA")
     }
