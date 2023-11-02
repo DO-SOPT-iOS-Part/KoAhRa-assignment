@@ -1,5 +1,5 @@
 //
-//  DayWeatherCollectionViewCell.swift
+//  DayWeatherTableViewCell.swift
 //  AppleWeather
 //
 //  Created by 고아라 on 2023/11/01.
@@ -9,7 +9,7 @@ import UIKit
 
 import SnapKit
 
-class DayWeatherCollectionViewCell: UICollectionViewCell, UICollectionViewRegisterable {
+class DayWeatherTableViewCell: UITableViewCell, UITableViewRegisterable {
     
     // MARK: - Properties
     
@@ -74,9 +74,10 @@ class DayWeatherCollectionViewCell: UICollectionViewCell, UICollectionViewRegist
     
     // MARK: - Life Cycles
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
         
+        backgroundColor = .clear
         setHierarchy()
         setLayout()
     }
@@ -88,7 +89,7 @@ class DayWeatherCollectionViewCell: UICollectionViewCell, UICollectionViewRegist
 }
 
 // MARK: - Extensions
-extension DayWeatherCollectionViewCell {
+extension DayWeatherTableViewCell {
     func setHierarchy() {
         self.addSubviews(dayLabel, stackView, lowTempLabel, highTempLabel, gradientView, lineView)
     }
@@ -102,13 +103,13 @@ extension DayWeatherCollectionViewCell {
         
         weatherImage.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.width.equalTo(33)
-            $0.height.equalTo(28)
+            $0.size.equalTo(24)
         }
         
         stackView.snp.makeConstraints {
             $0.centerY.equalToSuperview()
             $0.leading.equalTo(dayLabel.snp.trailing).offset(30)
+            $0.width.equalTo(33)
         }
         
         lowTempLabel.snp.makeConstraints {

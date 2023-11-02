@@ -9,7 +9,7 @@ import UIKit
 
 import SnapKit
 
-final class DayWeatherHeaderView: UICollectionReusableView, UICollectionHeaderViewRegisterable {
+final class DayWeatherHeaderView: UITableViewHeaderFooterView, UITableViewHeaderFooterRegisterable {
     
     // MARK: - Properties
     
@@ -29,8 +29,8 @@ final class DayWeatherHeaderView: UICollectionReusableView, UICollectionHeaderVi
     
     // MARK: - Life Cycles
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    override init(reuseIdentifier: String?) {
+        super.init(reuseIdentifier: reuseIdentifier)
         
         setHierarchy()
         setLayout()

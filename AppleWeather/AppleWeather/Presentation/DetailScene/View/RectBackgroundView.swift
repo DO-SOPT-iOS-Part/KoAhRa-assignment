@@ -17,7 +17,7 @@ final class RectBackgroundView: UIView {
         let view = UIView()
         view.backgroundColor = .WeatherGray4
         view.layer.cornerRadius = 15
-        view.layer.borderColor = UIColor.WeatherGray3.cgColor
+        view.layer.borderColor = UIColor.WeatherGray5.cgColor
         view.layer.borderWidth = 1
         return view
     }()
