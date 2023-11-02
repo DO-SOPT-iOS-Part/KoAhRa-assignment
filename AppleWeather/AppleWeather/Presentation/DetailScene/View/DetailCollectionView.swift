@@ -60,7 +60,7 @@ private extension DetailCollectionView {
         }
         
         headerView.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(10)
+            $0.top.equalToSuperview()
             $0.leading.trailing.equalToSuperview().inset(15)
             $0.height.equalTo(57)
         }
