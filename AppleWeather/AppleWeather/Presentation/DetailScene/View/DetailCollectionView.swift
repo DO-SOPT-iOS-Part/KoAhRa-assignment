@@ -11,20 +11,17 @@ import SnapKit
 
 final class DetailCollectionView: UIView {
     
-    // MARK: - Properties
-    
-    private typealias SectionType = Section
-    
-    @frozen
-    private enum Section: CaseIterable {
-        case hour, day
-    }
-    
     // MARK: - UI Components
     
+    private let headerView = HourWeatherHeaderView()
+    private let rectView = RectBackgroundView()
+    
     lazy var DetailCollectionView: UICollectionView = {
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: self.setSectionLayout())
-        collectionView.showsVerticalScrollIndicator = false
+        let flowLayout = UICollectionViewFlowLayout()
+        flowLayout.minimumInteritemSpacing = 22
+        flowLayout.scrollDirection = .horizontal
+        flowLayout.itemSize.height = 122
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.clipsToBounds = true
         collectionView.contentInsetAdjustmentBehavior = .never
@@ -53,106 +50,29 @@ final class DetailCollectionView: UIView {
 // MARK: - Extensions
 private extension DetailCollectionView {
     func setHierarchy() {
-        self.addSubview(DetailCollectionView)
+        self.addSubviews(rectView)
+        rectView.addSubviews(headerView, DetailCollectionView)
     }
     
     func setLayout() {
-        DetailCollectionView.snp.makeConstraints {
+        rectView.snp.makeConstraints {
             $0.edges.equalToSuperview()
+        }
+        
+        headerView.snp.makeConstraints {
+            $0.top.equalToSuperview().inset(10)
+            $0.leading.trailing.equalToSuperview().inset(15)
+            $0.height.equalTo(57)
+        }
+        
+        DetailCollectionView.snp.makeConstraints {
+            $0.top.equalTo(headerView.snp.bottom).offset(14)
+            $0.leading.trailing.equalToSuperview().inset(15)
+            $0.bottom.equalToSuperview().inset(10)
         }
     }
     
     func registerCell() {
-        HourWeatherHeaderView.register(target: DetailCollectionView)
         HourWeatherCollectionViewCell.register(target: DetailCollectionView)
-        DayWeatherHeaderView.register(target: DetailCollectionView)
-        DayWeatherCollectionViewCell.register(target: DetailCollectionView)
-    }
-    
-    func setSectionLayout() -> UICollectionViewLayout {
-        let layout = UICollectionViewCompositionalLayout { sectionIndex, env -> NSCollectionLayoutSection? in
-            let sectionType = Section.allCases[sectionIndex]
-            switch sectionType {
-            case .hour:
-                return self.getLayoutHour()
-            case .day:
-                return self.getLayoutDay()
-            }
-        }
-        layout.register(RectBackgroundView.self, forDecorationViewOfKind: "rectBackground")
-        return layout
-    }
-    
-    func getLayoutHour() -> NSCollectionLayoutSection {
-        let itemSize = NSCollectionLayoutSize(
-            widthDimension: .estimated(44),
-            heightDimension: .absolute(122)
-        )
-        let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        
-        let groupSize = NSCollectionLayoutSize(
-            widthDimension: .fractionalWidth(1.4),
-            heightDimension: .absolute(122)
-        )
-        let group = NSCollectionLayoutGroup.horizontal(
-            layoutSize: groupSize,
-            subitems: [item]
-        )
-        group.interItemSpacing = .fixed(22)
-        
-        let headerSize = NSCollectionLayoutSize(
-            widthDimension: .fractionalWidth(1.0),
-            heightDimension: .absolute(57)
-        )
-        let header = NSCollectionLayoutBoundarySupplementaryItem(
-            layoutSize: headerSize,
-            elementKind: UICollectionView.elementKindSectionHeader,
-            alignment: .top
-        )
-        
-        let section = NSCollectionLayoutSection(group: group)
-        section.contentInsets = NSDirectionalEdgeInsets(top: 14, leading: 15, bottom: 10, trailing: 0)
-        section.orthogonalScrollingBehavior = .continuous
-        section.boundarySupplementaryItems = [header]
-        let sectionBackgroundDecoration = NSCollectionLayoutDecorationItem.background(elementKind: "rectBackground")
-        section.decorationItems = [sectionBackgroundDecoration]
-        return section
-    }
-    
-    func getLayoutDay() -> NSCollectionLayoutSection {
-        let itemSize = NSCollectionLayoutSize(
-            widthDimension: .fractionalWidth(1.0),
-            heightDimension: .absolute(55)
-        )
-        let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        
-        let groupSize = NSCollectionLayoutSize(
-            widthDimension: .fractionalWidth(1.0),
-            heightDimension: .absolute(643)
-        )
-        let group = NSCollectionLayoutGroup.vertical(
-            layoutSize: groupSize,
-            subitems: [item]
-        )
-        
-        let headerSize = NSCollectionLayoutSize(
-            widthDimension: .fractionalWidth(1.0),
-            heightDimension: .absolute(24)
-        )
-        let header = NSCollectionLayoutBoundarySupplementaryItem(
-            layoutSize: headerSize,
-            elementKind: UICollectionView.elementKindSectionHeader,
-            alignment: .top
-        )
-        header.contentInsets = NSDirectionalEdgeInsets(top: -8, leading: 0, bottom: 0, trailing: 0)
-        
-        let section = NSCollectionLayoutSection(group: group)
-        section.contentInsets = NSDirectionalEdgeInsets(top: 6, leading: 0, bottom: 10, trailing: 0)
-        section.orthogonalScrollingBehavior = .continuous
-        section.boundarySupplementaryItems = [header]
-        let sectionBackgroundDecoration = NSCollectionLayoutDecorationItem.background(elementKind: "rectBackground")
-        section.decorationItems = [sectionBackgroundDecoration]
-
-        return section
     }
 }

@@ -120,7 +120,6 @@
 			isa = PBXGroup;
 			children = (
 				A414CDC42AEF9AAB00182C40 /* HourWeatherCollectionViewCell.swift */,
-				A414CE342AF1786700182C40 /* HourWeatherHeaderView.swift */,
 				A414CE3C2AF28B6600182C40 /* DayWeatherCollectionViewCell.swift */,
 				A414CE3E2AF28D1500182C40 /* DayWeatherHeaderView.swift */,
 			);
@@ -242,6 +241,7 @@
 			isa = PBXGroup;
 			children = (
 				A414CE3A2AF282A900182C40 /* RectBackgroundView.swift */,
+				A414CE342AF1786700182C40 /* HourWeatherHeaderView.swift */,
 				A414CE362AF1798800182C40 /* DetailTitleView.swift */,
 				A414CE382AF17A9100182C40 /* DetailCollectionView.swift */,
 			);

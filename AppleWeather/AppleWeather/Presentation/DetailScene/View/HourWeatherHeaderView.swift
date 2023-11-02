@@ -9,12 +9,8 @@ import UIKit
 
 import SnapKit
 
-final class HourWeatherHeaderView: UICollectionReusableView, UICollectionHeaderViewRegisterable {
-    
-    // MARK: - Properties
-    
-    static let isFromNib: Bool = false
-    
+final class HourWeatherHeaderView: UIView {
+
     // MARK: - UI Components
     
     private let headerLabel: UILabel = {

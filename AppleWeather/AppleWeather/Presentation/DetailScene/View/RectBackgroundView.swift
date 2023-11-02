@@ -9,7 +9,7 @@ import UIKit
 
 import SnapKit
 
-final class RectBackgroundView: UICollectionReusableView {
+final class RectBackgroundView: UIView {
     
     // MARK: - UI Components
     
