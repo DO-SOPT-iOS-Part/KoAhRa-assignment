@@ -13,7 +13,12 @@ class DetailViewController: UIViewController {
     
     // MARK: - Properties
     
-    var index: Int = 0
+    var indexPage: Int = 0 {
+        didSet {
+            collectionView.reloadData()
+            tableView.reloadData()
+        }
+    }
     
     private let weatherEntity : [WeatherEntity] = WeatherEntity.mainEntityDummy()
     
@@ -25,9 +30,9 @@ class DetailViewController: UIViewController {
     
     private let detailTitleView = DetailTitleView()
     private let detailCollectionView = DetailCollectionView()
-    private lazy var collectionView = detailCollectionView.DetailCollectionView
+    lazy var collectionView = detailCollectionView.DetailCollectionView
     private let detailTableView = DetailTableView()
-    private lazy var tableView = detailTableView.DetailTableView
+    lazy var tableView = detailTableView.DetailTableView
     
     // MARK: - Life Cycles
     
@@ -93,6 +98,7 @@ extension DetailViewController {
     
     func setDataBind(index: Int) {
         detailTitleView.setDataBind(model: weatherEntity[index])
+        self.indexPage = index
     }
 }
 
@@ -103,12 +109,12 @@ extension DetailViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell =
         HourWeatherCollectionViewCell.dequeueReusableCell(collectionView: collectionView, indexPath: indexPath)
-        cell.setDataBind(model: weatherEntity[index].detailWeather[indexPath.row])
+        cell.setDataBind(model: weatherEntity[indexPage].detailWeather[indexPath.item])
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return weatherEntity[index].detailWeather.count
+        return weatherEntity[indexPage].detailWeather.count
     }
 }
 
@@ -128,13 +134,13 @@ extension DetailViewController: UITableViewDelegate {
 }
 
 extension DetailViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return weatherEntity[index].dayWeather.count
-    }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = DayWeatherTableViewCell.dequeueReusableCell(tableView: tableView, indexPath: indexPath)
-        cell.setDataBind(model: weatherEntity[index].dayWeather[indexPath.row])
+        cell.setDataBind(model: weatherEntity[indexPage].dayWeather[indexPath.row])
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return weatherEntity[indexPage].dayWeather.count
     }
 }

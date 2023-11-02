@@ -88,7 +88,7 @@ extension WeatherEntity {
                 DetailWeather(time: 2, weather: "rain", temp: 17),
                 DetailWeather(time: 3, weather: "rain", temp: 15),
                 DetailWeather(time: 4, weather: "cloud", temp: 15)], dayWeather: [
-                    DayWeather(day: "오늘", weather: "sunny", rain: 0, lowTemp: 15, highTemp: 29),
+                    DayWeather(day: "오늘", weather: "sunny", rain: 0, lowTemp: 20, highTemp: 29),
                     DayWeather(day: "월", weather: "rain", rain: 60, lowTemp: 18, highTemp: 27),
                     DayWeather(day: "화", weather: "rain", rain: 60, lowTemp: 20, highTemp: 25),
                     DayWeather(day: "수", weather: "rain", rain: 70, lowTemp: 17, highTemp: 25),
@@ -132,7 +132,7 @@ extension WeatherEntity {
                 DetailWeather(time: 2, weather: "cloud", temp: 10),
                 DetailWeather(time: 3, weather: "lightrain", temp: 8),
                 DetailWeather(time: 4, weather: "thunder", temp: 7)], dayWeather: [
-                    DayWeather(day: "오늘", weather: "sunny", rain: 0, lowTemp: 15, highTemp: 29),
+                    DayWeather(day: "오늘", weather: "sunny", rain: 0, lowTemp: 14, highTemp: 29),
                     DayWeather(day: "월", weather: "rain", rain: 60, lowTemp: 18, highTemp: 27),
                     DayWeather(day: "화", weather: "rain", rain: 60, lowTemp: 20, highTemp: 25),
                     DayWeather(day: "수", weather: "rain", rain: 70, lowTemp: 17, highTemp: 25),
