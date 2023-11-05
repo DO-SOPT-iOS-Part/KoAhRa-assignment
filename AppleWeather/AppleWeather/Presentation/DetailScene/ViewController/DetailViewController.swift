@@ -67,6 +67,7 @@ class DetailViewController: UIViewController {
         setHierarchy()
         setLayout()
         setDelegate()
+        findMinMaxTemp()
     }
 }
 
@@ -138,6 +139,21 @@ extension DetailViewController {
         detailSmallTitleView.setDataBind(model: weatherEntity[index])
         self.indexPage = index
     }
+    
+    func findMinMaxTemp() {
+        let model = weatherEntity[indexPage].dayWeather
+        self.lowestTemp = model.first?.lowTemp ?? 0
+        self.highestTemp = model.first?.highTemp ?? 0
+        
+        for i in 0..<model.count {
+            if model[i].lowTemp < self.lowestTemp {
+                self.lowestTemp = model[i].lowTemp
+            }
+            if model[i].highTemp > self.highestTemp {
+                self.highestTemp = model[i].highTemp
+            }
+        }
+    }
 }
 
 extension DetailViewController: UICollectionViewDelegate {
@@ -175,6 +191,7 @@ extension DetailViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = DayWeatherTableViewCell.dequeueReusableCell(tableView: tableView, indexPath: indexPath)
         cell.setDataBind(model: weatherEntity[indexPage].dayWeather[indexPath.row])
+        cell.setGradientView(model: weatherEntity[indexPage].dayWeather[indexPath.row], highestTemp: self.highestTemp, lowestTemp: self.lowestTemp)
         return cell
     }
     
