@@ -43,4 +43,8 @@ extension UIColor {
     static var gradientEnd: UIColor {
         return UIColor(hex: "#EF8835")
     }
+    
+    static var gradientBackground: UIColor {
+        return UIColor(hex: "#262B36")
+    }
 }

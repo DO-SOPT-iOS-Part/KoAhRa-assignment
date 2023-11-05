@@ -55,8 +55,18 @@ class DayWeatherTableViewCell: UITableViewCell, UITableViewRegisterable {
     
     private let gradientView: UIView = {
         let view = UIView()
-        view.backgroundColor = .orange
+        view.backgroundColor = .gradientBackground
+        view.layer.cornerRadius = 2
         return view
+    }()
+    
+    private lazy var gradientLayer: CAGradientLayer = {
+        let gradient = CAGradientLayer()
+        gradient.colors = [UIColor.gradientStart.cgColor, UIColor.gradientEnd.cgColor]
+        gradient.startPoint = CGPoint(x: 0, y: 1)
+        gradient.endPoint = CGPoint(x: 1, y: 0)
+        gradient.cornerRadius = 2
+        return gradient
     }()
     
     private let highTempLabel: UILabel = {
@@ -73,6 +83,11 @@ class DayWeatherTableViewCell: UITableViewCell, UITableViewRegisterable {
     }()
     
     // MARK: - Life Cycles
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+    }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -92,6 +107,7 @@ class DayWeatherTableViewCell: UITableViewCell, UITableViewRegisterable {
 extension DayWeatherTableViewCell {
     func setHierarchy() {
         self.addSubviews(dayLabel, stackView, lowTempLabel, highTempLabel, gradientView, lineView)
+        gradientView.layer.insertSublayer(gradientLayer, at: 0)
     }
     
     func setLayout() {
@@ -121,7 +137,7 @@ extension DayWeatherTableViewCell {
             $0.centerY.equalToSuperview()
             $0.leading.equalTo(lowTempLabel.snp.trailing).offset(5)
             $0.trailing.equalTo(highTempLabel.snp.leading).offset(-5)
-            $0.height.equalTo(12)
+            $0.height.equalTo(4)
         }
         
         highTempLabel.snp.makeConstraints {
@@ -149,5 +165,14 @@ extension DayWeatherTableViewCell {
         default:
             weatherImage.image = ImageLiterals.Detail.ic_rain
         }
+    }
+    
+    func setGradientView(model: DayWeather, highestTemp: Int, lowestTemp: Int) {
+        let gradientLength = CGFloat(model.highTemp - model.lowTemp)
+        let totalLength = CGFloat(highestTemp - lowestTemp)
+        let width = gradientLength / totalLength * 100
+    
+        gradientLayer.frame = CGRect(x: CGFloat(model.lowTemp - lowestTemp) / totalLength * 100, y: 0, width: width, height: 4)
+        gradientView.setNeedsDisplay()
     }
 }
