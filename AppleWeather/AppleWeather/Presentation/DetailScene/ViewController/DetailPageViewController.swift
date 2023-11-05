@@ -114,6 +114,7 @@ extension DetailPageViewController {
     func setAddTarget() {
         mapButton.addTarget(self, action: #selector(tapButton(_:)), for: .touchUpInside)
         listButton.addTarget(self, action: #selector(tapButton(_:)), for: .touchUpInside)
+        pageControl.addTarget(self, action: #selector(pageControlTapped(sender:)), for: .valueChanged)
     }
     
     @objc
@@ -125,6 +126,14 @@ extension DetailPageViewController {
             self.navigationController?.popViewController(animated: true)
         default:
             break
+        }
+    }
+    
+    @objc
+    func pageControlTapped(sender: UIPageControl) {
+        let currentPage = sender.currentPage
+        if currentPage < pages.count {
+            setViewControllers([pages[currentPage]], direction: .forward, animated: true, completion: nil)
         }
     }
 }
