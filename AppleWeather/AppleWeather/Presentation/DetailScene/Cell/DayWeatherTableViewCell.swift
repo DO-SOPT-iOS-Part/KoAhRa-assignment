@@ -70,6 +70,13 @@ class DayWeatherTableViewCell: UITableViewCell, UITableViewRegisterable {
     }()
     
     private let nowTempImage: UIImageView = UIImageView(image: ImageLiterals.Detail.ic_dot)
+    private let circleView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .WeatherGray6
+        view.layer.cornerRadius = 6
+        view.clipsToBounds = true
+        return view
+    }()
     
     private let highTempLabel: UILabel = {
         let label = UILabel()
@@ -177,11 +184,16 @@ extension DayWeatherTableViewCell {
         gradientLayer.frame = CGRect(x: CGFloat(model.lowTemp - lowestTemp) / totalLength * 100, y: 0, width: width, height: 4)
         
         if model.day == "오늘" {
-            gradientView.addSubview(nowTempImage)
+            gradientView.addSubviews(circleView, nowTempImage)
+            circleView.snp.makeConstraints {
+                $0.leading.equalToSuperview().inset(CGFloat(nowTemp - lowestTemp) / totalLength * 100)
+                $0.centerY.equalToSuperview()
+                $0.size.equalTo(10)
+            }
             nowTempImage.snp.makeConstraints {
                 $0.leading.equalToSuperview().inset(CGFloat(nowTemp - lowestTemp) / totalLength * 100)
                 $0.centerY.equalToSuperview()
-                $0.size.equalTo(11)
+                $0.size.equalTo(10)
             }
         }
         gradientView.setNeedsDisplay()
