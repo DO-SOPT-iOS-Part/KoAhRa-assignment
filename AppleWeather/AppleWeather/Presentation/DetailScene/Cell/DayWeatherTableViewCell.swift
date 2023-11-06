@@ -69,6 +69,8 @@ class DayWeatherTableViewCell: UITableViewCell, UITableViewRegisterable {
         return gradient
     }()
     
+    private let nowTempImage: UIImageView = UIImageView(image: ImageLiterals.Detail.ic_dot)
+    
     private let highTempLabel: UILabel = {
         let label = UILabel()
         label.font = .SFProDisplayMedium(size: 22)
@@ -167,12 +169,21 @@ extension DayWeatherTableViewCell {
         }
     }
     
-    func setGradientView(model: DayWeather, highestTemp: Int, lowestTemp: Int) {
+    func setGradientView(model: DayWeather, lowestTemp: Int, nowTemp: Int, highestTemp: Int) {
         let gradientLength = CGFloat(model.highTemp - model.lowTemp)
         let totalLength = CGFloat(highestTemp - lowestTemp)
         let width = gradientLength / totalLength * 100
     
         gradientLayer.frame = CGRect(x: CGFloat(model.lowTemp - lowestTemp) / totalLength * 100, y: 0, width: width, height: 4)
+        
+        if model.day == "오늘" {
+            gradientView.addSubview(nowTempImage)
+            nowTempImage.snp.makeConstraints {
+                $0.leading.equalToSuperview().inset(CGFloat(nowTemp - lowestTemp) / totalLength * 100)
+                $0.centerY.equalToSuperview()
+                $0.size.equalTo(11)
+            }
+        }
         gradientView.setNeedsDisplay()
     }
 }

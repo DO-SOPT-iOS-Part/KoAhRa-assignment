@@ -191,7 +191,7 @@ extension DetailViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = DayWeatherTableViewCell.dequeueReusableCell(tableView: tableView, indexPath: indexPath)
         cell.setDataBind(model: weatherEntity[indexPage].dayWeather[indexPath.row])
-        cell.setGradientView(model: weatherEntity[indexPage].dayWeather[indexPath.row], highestTemp: self.highestTemp, lowestTemp: self.lowestTemp)
+        cell.setGradientView(model: weatherEntity[indexPage].dayWeather[indexPath.row], lowestTemp: self.lowestTemp, nowTemp: weatherEntity[indexPage].temp, highestTemp: self.highestTemp)
         return cell
     }
     
