@@ -14,7 +14,6 @@ final class DetailCollectionView: UIView {
     // MARK: - UI Components
     
     private let headerView = HourWeatherHeaderView()
-    private let rectView = RectBackgroundView()
     
     lazy var DetailCollectionView: UICollectionView = {
         let flowLayout = UICollectionViewFlowLayout()
@@ -35,6 +34,7 @@ final class DetailCollectionView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
+        setUI()
         setHierarchy()
         setLayout()
         registerCell()
@@ -49,26 +49,28 @@ final class DetailCollectionView: UIView {
 
 // MARK: - Extensions
 private extension DetailCollectionView {
+    func setUI() {
+        self.backgroundColor = .WeatherGray4
+        self.layer.cornerRadius = 15
+        self.layer.borderColor = UIColor.WeatherGray5.cgColor
+        self.layer.borderWidth = 1
+    }
+    
     func setHierarchy() {
-        self.addSubviews(rectView)
-        rectView.addSubviews(headerView, DetailCollectionView)
+        self.addSubviews(headerView, DetailCollectionView)
     }
     
     func setLayout() {
-        rectView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
-        }
-        
         headerView.snp.makeConstraints {
             $0.top.equalToSuperview()
             $0.leading.trailing.equalToSuperview().inset(15)
-            $0.height.equalTo(57)
         }
         
         DetailCollectionView.snp.makeConstraints {
-            $0.top.equalTo(headerView.snp.bottom).offset(14)
+            $0.top.equalTo(headerView.snp.bottom)
             $0.leading.trailing.equalToSuperview().inset(15)
-            $0.bottom.equalToSuperview().inset(10)
+            $0.bottom.equalToSuperview()
+            $0.height.equalTo(150)
         }
     }
     

@@ -61,5 +61,9 @@ extension HourWeatherHeaderView {
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(1)
         }
+        
+        self.snp.makeConstraints {
+            $0.bottom.equalTo(lineView.snp.bottom)
+        }
     }
 }

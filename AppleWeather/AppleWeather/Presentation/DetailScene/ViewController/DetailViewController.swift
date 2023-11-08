@@ -115,7 +115,6 @@ extension DetailViewController {
         detailCollectionView.snp.makeConstraints {
             $0.top.equalTo(detailTitleView.snp.bottom).offset(44)
             $0.leading.trailing.equalToSuperview().inset(20)
-            $0.height.equalTo(220)
         }
         
         detailTableView.snp.makeConstraints {

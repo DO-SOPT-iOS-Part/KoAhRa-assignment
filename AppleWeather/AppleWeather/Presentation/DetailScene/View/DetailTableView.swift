@@ -12,9 +12,7 @@ import SnapKit
 final class DetailTableView: UIView {
     
     // MARK: - UI Components
-    
-    private let rectView = RectBackgroundView()
-    
+
     lazy var DetailTableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .plain)
         tableView.backgroundColor = .clear
@@ -32,6 +30,7 @@ final class DetailTableView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
+        setUI()
         setHierarchy()
         setLayout()
         registerCell()
@@ -45,16 +44,18 @@ final class DetailTableView: UIView {
 // MARK: - Extensions
 
 private extension DetailTableView {
+    func setUI() {
+        self.backgroundColor = .WeatherGray4
+        self.layer.cornerRadius = 15
+        self.layer.borderColor = UIColor.WeatherGray5.cgColor
+        self.layer.borderWidth = 1
+    }
+    
     func setHierarchy() {
-        self.addSubview(rectView)
-        rectView.addSubview(DetailTableView)
+        self.addSubview(DetailTableView)
     }
     
     func setLayout() {
-        rectView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
-        }
-        
         DetailTableView.snp.makeConstraints {
             $0.top.equalToSuperview().inset(8)
             $0.leading.trailing.equalToSuperview()
