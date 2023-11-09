@@ -23,16 +23,14 @@ class DetailViewController: UIViewController {
     private let weatherEntity : [WeatherEntity] = WeatherEntity.mainEntityDummy()
     
     private enum HeaderHeight {
-        static let statusBarHeight = UIApplication.shared.statusBarFrame.height + 6
         static let stickyHeaderHeightMin = 80.0
         static let stickyHeaderHeightMax = 220.0
-        static var stickyHeaderHeightMaxWithoutStatusBar: Double {
-            stickyHeaderHeightMax - statusBarHeight
-        }
     }
     
     private var lowestTemp: Int = 0
     private var highestTemp: Int = 0
+    
+    private var scrollTopConstraint: Constraint?
     
     // MARK: - UI Components
     
@@ -90,7 +88,7 @@ extension DetailViewController {
         }
         
         scrollView.snp.makeConstraints {
-            $0.top.equalTo(self.view.safeAreaLayoutGuide)
+            scrollTopConstraint = $0.top.equalTo(self.view.safeAreaLayoutGuide).constraint
             $0.leading.trailing.bottom.equalToSuperview()
         }
         
@@ -202,22 +200,23 @@ extension DetailViewController: UITableViewDataSource {
 extension DetailViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let offsetY = scrollView.contentOffset.y
-        let maxOffset: CGFloat = HeaderHeight.stickyHeaderHeightMaxWithoutStatusBar
+        let maxOffset: CGFloat = HeaderHeight.stickyHeaderHeightMax
+        var scrollTopInset: CGFloat
         
         var remainingTopSpacingRatio: CGFloat
         if offsetY >= maxOffset {
             remainingTopSpacingRatio = 0
-            scrollView.snp.updateConstraints {
-                $0.top.equalTo(view.safeAreaLayoutGuide).offset(HeaderHeight.stickyHeaderHeightMin + 20)
-            }
-            self.view.layoutIfNeeded()
+            scrollTopInset = 100
         } else {
             remainingTopSpacingRatio = 1 - (offsetY / maxOffset)
-            scrollView.snp.updateConstraints {
-                $0.top.equalTo(view.safeAreaLayoutGuide)
-            }
+            scrollTopInset = 0
         }
-        detailTitleView.alpha = remainingTopSpacingRatio
-        detailSmallTitleView.alpha = 1 - remainingTopSpacingRatio
+        
+        UIView.animate(withDuration: 0.3, animations: {
+            self.detailTitleView.alpha = remainingTopSpacingRatio
+            self.detailSmallTitleView.alpha = 1 - remainingTopSpacingRatio
+            self.scrollTopConstraint?.update(offset: scrollTopInset)
+            self.view.layoutIfNeeded()
+        })
     }
 }
