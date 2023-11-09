@@ -50,6 +50,7 @@ class DayWeatherTableViewCell: UITableViewCell, UITableViewRegisterable {
         let label = UILabel()
         label.font = .SFProDisplayMedium(size: 22)
         label.textColor = .WeatherGray5
+        label.textAlignment = .right
         return label
     }()
     
@@ -82,8 +83,11 @@ class DayWeatherTableViewCell: UITableViewCell, UITableViewRegisterable {
         let label = UILabel()
         label.font = .SFProDisplayMedium(size: 22)
         label.textColor = .WeatherWhite
+        label.textAlignment = .right
         return label
     }()
+    
+    private let tempView = UIView()
     
     private let lineView: UIView = {
         let line = UIView()
@@ -115,7 +119,7 @@ class DayWeatherTableViewCell: UITableViewCell, UITableViewRegisterable {
 // MARK: - Extensions
 extension DayWeatherTableViewCell {
     func setHierarchy() {
-        self.addSubviews(dayLabel, stackView, lowTempLabel, highTempLabel, gradientView, lineView)
+        self.addSubviews(dayLabel, stackView, highTempLabel, gradientView, lowTempLabel, lineView)
         gradientView.layer.insertSublayer(gradientLayer, at: 0)
     }
     
@@ -137,21 +141,23 @@ extension DayWeatherTableViewCell {
             $0.width.equalTo(33)
         }
         
-        lowTempLabel.snp.makeConstraints {
+        highTempLabel.snp.makeConstraints {
             $0.centerY.equalToSuperview()
-            $0.leading.equalTo(stackView.snp.trailing).offset(15)
+            $0.trailing.equalToSuperview().inset(17)
+            $0.width.equalTo(40)
         }
         
         gradientView.snp.makeConstraints {
             $0.centerY.equalToSuperview()
-            $0.leading.equalTo(lowTempLabel.snp.trailing).offset(5)
-            $0.trailing.equalTo(highTempLabel.snp.leading).offset(-5)
+            $0.trailing.equalTo(highTempLabel.snp.leading).offset(-9)
+            $0.width.equalTo(100)
             $0.height.equalTo(4)
         }
         
-        highTempLabel.snp.makeConstraints {
+        lowTempLabel.snp.makeConstraints {
             $0.centerY.equalToSuperview()
-            $0.trailing.equalToSuperview().inset(17)
+            $0.trailing.equalTo(gradientView.snp.leading).offset(-9)
+            $0.width.equalTo(40)
         }
         
         lineView.snp.makeConstraints {
