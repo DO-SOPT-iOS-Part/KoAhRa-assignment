@@ -79,7 +79,16 @@ extension MainViewController: UISearchBarDelegate {
 extension MainViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let nav = DetailPageViewController()
-        nav.initialPage = indexPath.item
+        if let selectedCell = collectionView.cellForItem(at: indexPath) as? WeatherCollectionViewCell {
+            if isFiltering {
+                if let searchText = selectedCell.locationLabel.text,
+                    let index = searchArray.firstIndex(of: searchText) {
+                    nav.initialPage = index
+                }
+            } else {
+                nav.initialPage = indexPath.item
+            }
+        }
         self.navigationController?.pushViewController(nav, animated: true)
     }
 }

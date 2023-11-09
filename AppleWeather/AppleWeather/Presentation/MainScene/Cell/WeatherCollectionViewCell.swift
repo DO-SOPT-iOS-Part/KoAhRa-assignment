@@ -33,7 +33,7 @@ class WeatherCollectionViewCell: UICollectionViewCell, UICollectionViewRegistera
         return label
     }()
     
-    private let locationLabel: UILabel = {
+    let locationLabel: UILabel = {
         let label = UILabel()
         label.font = .SFProDisplayMedium(size: 17)
         label.textColor = .WeatherWhite
