@@ -27,4 +27,28 @@ extension UIColor {
     static var WeatherGray4: UIColor {
         return UIColor(hex: "#1E252D")
     }
+    
+    static var WeatherGray5: UIColor {
+        return UIColor(hex: "#62666D")
+    }
+    
+    static var WeatherGray6: UIColor {
+        return UIColor(hex: "#202730")
+    }
+    
+    static var WeatherBlue: UIColor {
+        return UIColor(hex: "#81CFFA")
+    }
+    
+    static var gradientStart: UIColor {
+        return UIColor(hex: "#CDCF5C")
+    }
+    
+    static var gradientEnd: UIColor {
+        return UIColor(hex: "#EF8835")
+    }
+    
+    static var gradientBackground: UIColor {
+        return UIColor(hex: "#262B36")
+    }
 }

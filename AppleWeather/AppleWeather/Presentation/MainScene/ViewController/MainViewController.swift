@@ -9,10 +9,16 @@ import UIKit
 
 final class MainViewController: UIViewController {
     
+    // MARK: - Properties
+    
+    var filteredArray:[String] = []
+    var searchArray: [String] = []
+    var isFiltering : Bool = false
+    
     // MARK: - UI Components
     
     private let mainView = MainView()
-    
+    private lazy var collectionView = mainView.collectionView
     private let weatherEntity : [WeatherEntity] = WeatherEntity.mainEntityDummy()
     
     // MARK: - Life Cycles
@@ -22,12 +28,12 @@ final class MainViewController: UIViewController {
         
         self.view = mainView
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         setDelegate()
-        setDataBind()
+        setSearhArray()
     }
 }
 
@@ -35,22 +41,81 @@ final class MainViewController: UIViewController {
 
 extension MainViewController {
     func setDelegate() {
-        mainView.mainDelegate = self
+        mainView.searchBar.delegate = self
+        collectionView.delegate = self
+        collectionView.dataSource = self
     }
     
-    func setDataBind() {
-        mainView.firstWeather.setDataBind(model: weatherEntity[0])
-        mainView.secondWeather.setListDataBind(model: weatherEntity[1])
-        mainView.thirdWeather.setListDataBind(model: weatherEntity[2])
-        mainView.fourthWeather.setListDataBind(model: weatherEntity[3])
-        mainView.fifthWeather.setListDataBind(model: weatherEntity[4])
+    func setSearhArray() {
+        for i in 0..<weatherEntity.count {
+            self.searchArray.append(weatherEntity[i].location)
+        }
     }
 }
 
-extension MainViewController: MainDelegate {
-    func weatherTapped(idx: Int) {
+extension MainViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        self.isFiltering = true
+        if searchText.isEmpty {
+            filteredArray = searchArray
+        } else {
+            filteredArray = searchArray.filter { $0.lowercased().contains(searchText.lowercased()) }
+        }
+        collectionView.reloadData()
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        mainView.searchBar.text = ""
+        mainView.searchBar.resignFirstResponder()
+        self.isFiltering = false
+        self.collectionView.reloadData()
+    }
+}
+
+extension MainViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let nav = DetailPageViewController()
-        nav.initialPage = idx
+        if let selectedCell = collectionView.cellForItem(at: indexPath) as? WeatherCollectionViewCell {
+            if isFiltering {
+                if let searchText = selectedCell.locationLabel.text,
+                    let index = searchArray.firstIndex(of: searchText) {
+                    nav.initialPage = index
+                }
+            } else {
+                nav.initialPage = indexPath.item
+            }
+        }
         self.navigationController?.pushViewController(nav, animated: true)
     }
+}
+
+extension MainViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let cellSize = CGSize(width: UIScreen.main.bounds.width - 40, height: 117)
+        return cellSize
+    }
+}
+
+extension MainViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return isFiltering ? filteredArray.count : weatherEntity.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = WeatherCollectionViewCell.dequeueReusableCell(collectionView: collectionView, indexPath: indexPath)
+        
+        let data: WeatherEntity
+        if isFiltering {
+            data = weatherEntity.first { $0.location == filteredArray[indexPath.item] } ?? weatherEntity[0]
+        } else {
+            data = weatherEntity[indexPath.item]
+        }
+        cell.setDataBind(model: data)
+        return cell
+    }
+    
 }

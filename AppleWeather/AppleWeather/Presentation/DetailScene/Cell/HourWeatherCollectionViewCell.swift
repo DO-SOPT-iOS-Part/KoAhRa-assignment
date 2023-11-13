@@ -1,14 +1,19 @@
 //
-//  WeatherDetailView.swift
+//  HourWeatherCollectionViewCell.swift
 //  AppleWeather
 //
-//  Created by 고아라 on 2023/10/22.
+//  Created by 고아라 on 2023/10/30.
 //
 
 import UIKit
+
 import SnapKit
 
-class WeatherDetailView: UIView {
+class HourWeatherCollectionViewCell: UICollectionViewCell, UICollectionViewRegisterable {
+    
+    // MARK: - Properties
+    
+    static var isFromNib: Bool = false
     
     // MARK: - UI Components
     
@@ -57,9 +62,7 @@ class WeatherDetailView: UIView {
 }
 
 // MARK: - Extensions
-
-extension WeatherDetailView {
-    
+extension HourWeatherCollectionViewCell {
     func setHierarchy() {
         self.addSubview(stackView)
     }
@@ -86,7 +89,7 @@ extension WeatherDetailView {
     func setDataBind(model: DetailWeather) {
         timeLabel.text = "\(model.time)시"
         tempLabel.text = "\(model.temp)°"
-
+        
         switch model.weather {
         case "rain": weatherImage.image = ImageLiterals.Detail.ic_rain
         case "lightrain": weatherImage.image = ImageLiterals.Detail.ic_lightrain
@@ -98,4 +101,3 @@ extension WeatherDetailView {
         }
     }
 }
-
