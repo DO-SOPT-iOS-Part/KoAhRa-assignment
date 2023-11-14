@@ -14,18 +14,18 @@ final class MainViewController: UIViewController {
     var filteredArray: [String] = []
     var searchArray: [String] = []
     var isFiltering : Bool = false
+    
     let city: [String] = ["seoul", "jeju", "busan", "sokcho", "chuncheon"]
+    var mainEntity: [MainEntity?] = [] {
+        didSet {
+            self.collectionView.reloadData()
+        }
+    }
     
     // MARK: - UI Components
     
     private let mainView = MainView()
     private lazy var collectionView = mainView.collectionView
-    private let weatherEntity : [WeatherEntity] = WeatherEntity.mainEntityDummy()
-    private var mainEntity: [MainEntity?] = [] {
-        didSet {
-            self.collectionView.reloadData()
-        }
-    }
     
     // MARK: - Life Cycles
     
@@ -39,7 +39,6 @@ final class MainViewController: UIViewController {
         super.viewDidLoad()
         
         setDelegate()
-        setSearhArray()
         getMainAPI()
     }
 }
@@ -53,18 +52,13 @@ extension MainViewController {
         collectionView.dataSource = self
     }
     
-    func setSearhArray() {
-        for i in 0..<weatherEntity.count {
-            self.searchArray.append(weatherEntity[i].location)
-        }
-    }
-    
     func getMainAPI() {
         Task {
             for i in city {
                 do {
                     let result = try await WeatherService.shared.getMainWeather(city: i)
                     mainEntity.append(result)
+                    searchArray.append(result?.name ?? "")
                 } catch {
                     print(error)
                 }
@@ -122,22 +116,19 @@ extension MainViewController: UICollectionViewDelegateFlowLayout {
 
 extension MainViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return isFiltering ? filteredArray.count : weatherEntity.count
+        return isFiltering ? filteredArray.count : mainEntity.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = WeatherCollectionViewCell.dequeueReusableCell(collectionView: collectionView, indexPath: indexPath)
-        
-        let data: WeatherEntity
         if isFiltering {
-            data = weatherEntity.first { $0.location == filteredArray[indexPath.item] } ?? weatherEntity[0]
+            if let data = mainEntity.first(where: { $0?.name == filteredArray[indexPath.item] }) {
+                cell.tag = indexPath.item
+                cell.setDataBind(model: data!)
+            }
         } else {
-            data = weatherEntity[indexPath.item]
-        }
-        if (mainEntity.count == 5){
-            print(self.mainEntity[indexPath.item] ?? "")
             cell.tag = indexPath.item
-            cell.setDataBind(model: self.mainEntity[indexPath.item]!)
+            cell.setDataBind(model: mainEntity[indexPath.item]!)
         }
         return cell
     }
