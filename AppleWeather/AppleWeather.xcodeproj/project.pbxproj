@@ -22,6 +22,13 @@
 		A414CE3F2AF28D1500182C40 /* DayWeatherHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A414CE3E2AF28D1500182C40 /* DayWeatherHeaderView.swift */; };
 		A414CE472AF38ADB00182C40 /* DetailTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A414CE462AF38ADB00182C40 /* DetailTableView.swift */; };
 		A414CE492AF68B3100182C40 /* DetailSmallTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A414CE482AF68B3100182C40 /* DetailSmallTitleView.swift */; };
+		A461B5602B0276740049A0F3 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = A461B55F2B0276740049A0F3 /* Config.swift */; };
+		A461B5622B0278400049A0F3 /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = A461B5612B0278400049A0F3 /* Config.xcconfig */; };
+		A461B5672B027A650049A0F3 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A461B5662B027A650049A0F3 /* NetworkError.swift */; };
+		A461B5692B027AA40049A0F3 /* BaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A461B5682B027AA40049A0F3 /* BaseService.swift */; };
+		A461B56B2B02880B0049A0F3 /* MainEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A461B56A2B02880B0049A0F3 /* MainEntity.swift */; };
+		A461B56D2B0288140049A0F3 /* DetailEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A461B56C2B0288140049A0F3 /* DetailEntity.swift */; };
+		A461B5712B028C2D0049A0F3 /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A461B5702B028C2D0049A0F3 /* WeatherService.swift */; };
 		A4BC70112ADD72F200E54675 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BC70102ADD72F200E54675 /* AppDelegate.swift */; };
 		A4BC70132ADD72F200E54675 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BC70122ADD72F200E54675 /* SceneDelegate.swift */; };
 		A4BC701A2ADD72F600E54675 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A4BC70192ADD72F600E54675 /* Assets.xcassets */; };
@@ -59,6 +66,13 @@
 		A414CE3E2AF28D1500182C40 /* DayWeatherHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayWeatherHeaderView.swift; sourceTree = "<group>"; };
 		A414CE462AF38ADB00182C40 /* DetailTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableView.swift; sourceTree = "<group>"; };
 		A414CE482AF68B3100182C40 /* DetailSmallTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSmallTitleView.swift; sourceTree = "<group>"; };
+		A461B55F2B0276740049A0F3 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		A461B5612B0278400049A0F3 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		A461B5662B027A650049A0F3 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		A461B5682B027AA40049A0F3 /* BaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseService.swift; sourceTree = "<group>"; };
+		A461B56A2B02880B0049A0F3 /* MainEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainEntity.swift; sourceTree = "<group>"; };
+		A461B56C2B0288140049A0F3 /* DetailEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailEntity.swift; sourceTree = "<group>"; };
+		A461B5702B028C2D0049A0F3 /* WeatherService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherService.swift; sourceTree = "<group>"; };
 		A4BC700D2ADD72F200E54675 /* AppleWeather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppleWeather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4BC70102ADD72F200E54675 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A4BC70122ADD72F200E54675 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -96,7 +110,10 @@
 		A414CD822AE018B600182C40 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				A414CD832AE018C700182C40 /* WeatherEntity.swift */,
+				A461B55E2B0276650049A0F3 /* Enviornment */,
+				A461B5632B0279F00049A0F3 /* Base */,
+				A461B5642B0279F70049A0F3 /* Entity */,
+				A461B5652B027A050049A0F3 /* Service */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -129,6 +146,41 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		A461B55E2B0276650049A0F3 /* Enviornment */ = {
+			isa = PBXGroup;
+			children = (
+				A461B55F2B0276740049A0F3 /* Config.swift */,
+			);
+			path = Enviornment;
+			sourceTree = "<group>";
+		};
+		A461B5632B0279F00049A0F3 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				A461B5662B027A650049A0F3 /* NetworkError.swift */,
+				A461B5682B027AA40049A0F3 /* BaseService.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		A461B5642B0279F70049A0F3 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				A414CD832AE018C700182C40 /* WeatherEntity.swift */,
+				A461B56A2B02880B0049A0F3 /* MainEntity.swift */,
+				A461B56C2B0288140049A0F3 /* DetailEntity.swift */,
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
+		A461B5652B027A050049A0F3 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				A461B5702B028C2D0049A0F3 /* WeatherService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
 		A4BC70042ADD72F200E54675 = {
 			isa = PBXGroup;
 			children = (
@@ -153,6 +205,7 @@
 				A414CD822AE018B600182C40 /* Network */,
 				A4BC70242ADD78D100E54675 /* Presentation */,
 				A4BC701E2ADD72F600E54675 /* Info.plist */,
+				A461B5612B0278400049A0F3 /* Config.xcconfig */,
 			);
 			path = AppleWeather;
 			sourceTree = "<group>";
@@ -362,6 +415,7 @@
 				A4BC70542ADD86ED00E54675 /* SF-Pro-Display-Medium.otf in Resources */,
 				A4BC701D2ADD72F600E54675 /* LaunchScreen.storyboard in Resources */,
 				A4BC70532ADD86ED00E54675 /* SF-Pro-Display-Bold.otf in Resources */,
+				A461B5622B0278400049A0F3 /* Config.xcconfig in Resources */,
 				A4BC701A2ADD72F600E54675 /* Assets.xcassets in Resources */,
 				A4BC70522ADD86ED00E54675 /* SF-Pro-Display-Regular.otf in Resources */,
 				A4BC704D2ADD86BB00E54675 /* SF-Pro-Display-Thin.otf in Resources */,
@@ -376,12 +430,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				A4BC70402ADD813900E54675 /* FontLiterals.swift in Sources */,
+				A461B5672B027A650049A0F3 /* NetworkError.swift in Sources */,
 				A414CDC52AEF9AAB00182C40 /* HourWeatherCollectionViewCell.swift in Sources */,
+				A461B5602B0276740049A0F3 /* Config.swift in Sources */,
 				A414CE352AF1786700182C40 /* HourWeatherHeaderView.swift in Sources */,
 				A414CDC02AEE4E5100182C40 /* UICollectionViewRegisterable.swift in Sources */,
 				A414CD922AE68C4600182C40 /* DetailPageViewController.swift in Sources */,
 				A414CDBE2AEE4E1600182C40 /* NSObject+.swift in Sources */,
+				A461B5712B028C2D0049A0F3 /* WeatherService.swift in Sources */,
 				A4BC702E2ADD7A1100E54675 /* MainView.swift in Sources */,
+				A461B5692B027AA40049A0F3 /* BaseService.swift in Sources */,
 				A414CE372AF1798800182C40 /* DetailTitleView.swift in Sources */,
 				A4BC70112ADD72F200E54675 /* AppDelegate.swift in Sources */,
 				A414CD842AE018C700182C40 /* WeatherEntity.swift in Sources */,
@@ -400,7 +458,9 @@
 				A4BC70382ADD7A4800E54675 /* DetailViewController.swift in Sources */,
 				A414CDBC2AEE4D9C00182C40 /* UITableViewRegisterable.swift in Sources */,
 				A4BC70482ADD837300E54675 /* ColorLiterals.swift in Sources */,
+				A461B56D2B0288140049A0F3 /* DetailEntity.swift in Sources */,
 				A414CE392AF17A9100182C40 /* DetailCollectionView.swift in Sources */,
+				A461B56B2B02880B0049A0F3 /* MainEntity.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -420,6 +480,7 @@
 /* Begin XCBuildConfiguration section */
 		A4BC701F2ADD72F600E54675 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A461B5612B0278400049A0F3 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -480,6 +541,7 @@
 		};
 		A4BC70202ADD72F600E54675 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A461B5612B0278400049A0F3 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
