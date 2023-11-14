@@ -11,15 +11,21 @@ final class MainViewController: UIViewController {
     
     // MARK: - Properties
     
-    var filteredArray:[String] = []
+    var filteredArray: [String] = []
     var searchArray: [String] = []
     var isFiltering : Bool = false
+    let city: [String] = ["seoul", "jeju", "busan", "sokcho", "chuncheon"]
     
     // MARK: - UI Components
     
     private let mainView = MainView()
     private lazy var collectionView = mainView.collectionView
     private let weatherEntity : [WeatherEntity] = WeatherEntity.mainEntityDummy()
+    private var mainEntity: [MainEntity?] = [] {
+        didSet {
+            self.collectionView.reloadData()
+        }
+    }
     
     // MARK: - Life Cycles
     
@@ -34,6 +40,7 @@ final class MainViewController: UIViewController {
         
         setDelegate()
         setSearhArray()
+        getMainAPI()
     }
 }
 
@@ -49,6 +56,19 @@ extension MainViewController {
     func setSearhArray() {
         for i in 0..<weatherEntity.count {
             self.searchArray.append(weatherEntity[i].location)
+        }
+    }
+    
+    func getMainAPI() {
+        Task {
+            for i in city {
+                do {
+                    let result = try await WeatherService.shared.getMainWeather(city: i)
+                    mainEntity.append(result)
+                } catch {
+                    print(error)
+                }
+            }
         }
     }
 }
@@ -82,7 +102,7 @@ extension MainViewController: UICollectionViewDelegate {
         if let selectedCell = collectionView.cellForItem(at: indexPath) as? WeatherCollectionViewCell {
             if isFiltering {
                 if let searchText = selectedCell.locationLabel.text,
-                    let index = searchArray.firstIndex(of: searchText) {
+                   let index = searchArray.firstIndex(of: searchText) {
                     nav.initialPage = index
                 }
             } else {
@@ -114,8 +134,11 @@ extension MainViewController: UICollectionViewDataSource {
         } else {
             data = weatherEntity[indexPath.item]
         }
-        cell.setDataBind(model: data)
+        if (mainEntity.count == 5){
+            print(self.mainEntity[indexPath.item] ?? "")
+            cell.tag = indexPath.item
+            cell.setDataBind(model: self.mainEntity[indexPath.item]!)
+        }
         return cell
     }
-    
 }
