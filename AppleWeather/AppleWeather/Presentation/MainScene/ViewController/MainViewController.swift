@@ -58,7 +58,9 @@ extension MainViewController {
                 do {
                     let result = try await WeatherService.shared.getMainWeather(city: i)
                     mainEntity.append(result)
-                    searchArray.append(result?.name ?? "")
+                    if let cityName = result?.name {
+                        searchArray.append(cityName)
+                    }
                 } catch {
                     print(error)
                 }
@@ -123,12 +125,16 @@ extension MainViewController: UICollectionViewDataSource {
         let cell = WeatherCollectionViewCell.dequeueReusableCell(collectionView: collectionView, indexPath: indexPath)
         if isFiltering {
             if let data = mainEntity.first(where: { $0?.name == filteredArray[indexPath.item] }) {
-                cell.tag = indexPath.item
-                cell.setDataBind(model: data!)
+                if let data = data {
+                    cell.tag = indexPath.item
+                    cell.setDataBind(model: data)
+                }
             }
         } else {
-            cell.tag = indexPath.item
-            cell.setDataBind(model: mainEntity[indexPath.item]!)
+            if let data = mainEntity[indexPath.item] {
+                cell.tag = indexPath.item
+                cell.setDataBind(model: data)
+            }
         }
         return cell
     }
