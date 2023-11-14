@@ -130,10 +130,16 @@ extension WeatherCollectionViewCell {
         }
     }
     
+    func makeTimeZoneToTime(timeZone: Int) -> String {
+        let today = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeZone = TimeZone(secondsFromGMT: timeZone)
+        dateFormatter.dateFormat = "HHmm"
+        return dateFormatter.string(from: today)
+    }
+    
     func setDataBind(model: MainEntity) {
-        let formatterTime = DateFormatter()
-        formatterTime.dateFormat = "HHmm"
-        let currentTime = formatterTime.string(from: Date())
+        let currentTime = makeTimeZoneToTime(timeZone: model.timezone)
         let hour = Int(currentTime.prefix(2))!
         let min = currentTime.suffix(2)
         
