@@ -41,7 +41,7 @@ class HourWeatherCollectionViewCell: UICollectionViewCell, UICollectionViewRegis
         let stackview = UIStackView()
         stackview.axis = .vertical
         stackview.alignment = .center
-        stackview.spacing = 14
+        stackview.spacing = 20
         stackview.addArrangedSubviews(timeLabel, weatherImage, tempLabel)
         return stackview
     }()
@@ -73,11 +73,11 @@ extension HourWeatherCollectionViewCell {
         }
         
         weatherImage.snp.makeConstraints {
-            $0.size.equalTo(44)
+            $0.size.equalTo(26)
         }
         
         tempLabel.snp.makeConstraints {
-            $0.height.equalTo(28)
+            $0.height.equalTo(26)
         }
         
         stackView.snp.makeConstraints {
@@ -85,19 +85,20 @@ extension HourWeatherCollectionViewCell {
             $0.height.equalTo(122)
         }
     }
-    
-    func setDataBind(model: DetailWeather) {
-        timeLabel.text = "\(model.time)시"
-        tempLabel.text = "\(model.temp)°"
+
+    func setDataBind(model: DetailEntity) {
+        if let currentTime = String.convertToHourString(from: model.list[tag].dtTxt) {
+            timeLabel.text = currentTime
+        }
         
-        switch model.weather {
-        case "rain": weatherImage.image = ImageLiterals.Detail.ic_rain
-        case "lightrain": weatherImage.image = ImageLiterals.Detail.ic_lightrain
-        case "thunder": weatherImage.image = ImageLiterals.Detail.ic_thunder
-        case "sunnyrain": weatherImage.image = ImageLiterals.Detail.ic_sunnyrain
-        case "cloud": weatherImage.image = ImageLiterals.Detail.ic_cloud
-        default:
-            weatherImage.image = ImageLiterals.Detail.ic_rain
+        let temp = Int(round(model.list[tag].main.temp))
+        tempLabel.text = "\(temp)°"
+        
+        switch model.list[tag].weather[0].main {
+        case .clear: weatherImage.image = UIImage(systemName: "sun.max.fill")?.withTintColor(.systemYellow, renderingMode: .alwaysOriginal)
+        case .clouds: weatherImage.image = UIImage(systemName: "cloud.fill")?.withTintColor(.white, renderingMode: .alwaysOriginal)
+        case .rain: weatherImage.image = UIImage(systemName: "cloud.rain.fill")?.withTintColor(.white, renderingMode: .alwaysOriginal)
+        case .snow: weatherImage.image = UIImage(systemName: "cloud.snow.fill")?.withTintColor(.white, renderingMode: .alwaysOriginal)
         }
     }
 }

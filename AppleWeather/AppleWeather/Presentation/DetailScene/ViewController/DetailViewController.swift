@@ -21,6 +21,12 @@ class DetailViewController: UIViewController {
     }
     
     private let weatherEntity : [WeatherEntity] = WeatherEntity.mainEntityDummy()
+    private let city: [String] = ["seoul", "jeju", "busan", "sokcho", "chuncheon"]
+    private var detailEntity: [DetailEntity?] = [] {
+        didSet {
+            self.collectionView.reloadData()
+        }
+    }
     
     private enum HeaderHeight {
         static let stickyHeaderHeightMin = 80.0
@@ -66,6 +72,7 @@ class DetailViewController: UIViewController {
         setLayout()
         setDelegate()
         findMinMaxTemp()
+        getDetailAPI()
     }
 }
 
@@ -151,6 +158,19 @@ extension DetailViewController {
             }
         }
     }
+    
+    func getDetailAPI() {
+        Task {
+            for i in city {
+                do {
+                    let result = try await WeatherService.shared.getDetailWeather(city: i)
+                    detailEntity.append(result)
+                } catch {
+                    print(error)
+                }
+            }
+        }
+    }
 }
 
 extension DetailViewController: UICollectionViewDelegate {
@@ -160,7 +180,15 @@ extension DetailViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell =
         HourWeatherCollectionViewCell.dequeueReusableCell(collectionView: collectionView, indexPath: indexPath)
-        cell.setDataBind(model: weatherEntity[indexPage].detailWeather[indexPath.item])
+        
+        guard !detailEntity.isEmpty else {
+            return cell
+        }
+        
+        if let data = detailEntity[indexPage] {
+            cell.tag = indexPath.item
+            cell.setDataBind(model: data)
+        }
         return cell
     }
     
