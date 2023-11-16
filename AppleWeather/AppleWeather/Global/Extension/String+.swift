@@ -20,4 +20,17 @@ extension String {
             return nil
         }
     }
+    
+    static func convertToDayString(from dateString: String) -> String? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        
+        if let date = dateFormatter.date(from: dateString) {
+            dateFormatter.dateFormat = "dd일"
+            let formattedHour = dateFormatter.string(from: date)
+            return formattedHour
+        } else {
+            return nil
+        }
+    }
 }

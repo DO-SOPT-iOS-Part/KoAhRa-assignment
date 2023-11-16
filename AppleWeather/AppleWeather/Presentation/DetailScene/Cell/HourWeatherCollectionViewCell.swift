@@ -81,8 +81,7 @@ extension HourWeatherCollectionViewCell {
         }
         
         stackView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
-            $0.height.equalTo(122)
+            $0.top.leading.equalToSuperview()
         }
     }
 

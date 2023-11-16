@@ -22,11 +22,7 @@ class DetailViewController: UIViewController {
     
     private let weatherEntity : [WeatherEntity] = WeatherEntity.mainEntityDummy()
     private let city: [String] = ["seoul", "jeju", "busan", "sokcho", "chuncheon"]
-    private var detailEntity: [DetailEntity?] = [] {
-        didSet {
-            self.collectionView.reloadData()
-        }
-    }
+    private var detailEntity: [DetailEntity?] = []
     
     private enum HeaderHeight {
         static let stickyHeaderHeightMin = 80.0
@@ -161,13 +157,16 @@ extension DetailViewController {
     
     func getDetailAPI() {
         Task {
-            for i in city {
-                do {
+            do {
+                for i in city {
                     let result = try await WeatherService.shared.getDetailWeather(city: i)
                     detailEntity.append(result)
-                } catch {
-                    print(error)
                 }
+                DispatchQueue.main.async {
+                    self.collectionView.reloadData()
+                }
+            } catch {
+                print(error)
             }
         }
     }
