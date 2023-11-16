@@ -38,14 +38,14 @@ extension WeatherService {
         }
     }
     
-    func getDetailWeather(city: String) async throws -> DetailEnttiy? {
+    func getDetailWeather(city: String) async throws -> DetailEntity? {
         do {
             let request = self.makeDetailUrl(city: city)
             let (data, response) = try await URLSession.shared.data(for: request)
             guard response is HTTPURLResponse else {
                 throw NetworkError.responseError
             }
-            return WeatherService.parseData(data: data, modelType: DetailEnttiy.self)
+            return WeatherService.parseData(data: data, modelType: DetailEntity.self)
         } catch {
             throw error
         }

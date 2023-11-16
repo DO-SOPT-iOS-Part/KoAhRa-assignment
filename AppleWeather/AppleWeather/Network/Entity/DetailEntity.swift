@@ -7,8 +7,8 @@
 
 import Foundation
 
-// MARK: - DetailEnttiy
-struct DetailEnttiy: Codable {
+// MARK: - DetailEntity
+struct DetailEntity: Codable {
     let cod: String
     let message, cnt: Int
     let list: [List]
