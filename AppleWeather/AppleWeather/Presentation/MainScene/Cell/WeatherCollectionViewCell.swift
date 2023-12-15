@@ -27,7 +27,6 @@ class WeatherCollectionViewCell: UICollectionViewCell, UICollectionViewRegistera
     
     private let titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "나의 위치"
         label.font = .SFProDisplayBold(size: 24)
         label.textColor = .WeatherWhite
         return label
@@ -131,12 +130,34 @@ extension WeatherCollectionViewCell {
         }
     }
     
-    func setDataBind(model: WeatherEntity) {
-        locationLabel.text = model.location
-        weatherLabel.text = model.weather
-        tempLabel.text = "\(model.temp)°"
-        tempLowLabel.text = "최저 : \(model.tempLow)°"
-        tempHighLabel.text = "최고 : \(model.tempHigh)°"
+    func makeTimeZoneToTime(timeZone: Int) -> String {
+        let today = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeZone = TimeZone(secondsFromGMT: timeZone)
+        dateFormatter.dateFormat = "HHmm"
+        return dateFormatter.string(from: today)
+    }
+    
+    func setDataBind(model: MainEntity) {
+        let currentTime = makeTimeZoneToTime(timeZone: model.timezone)
+        let hour = Int(currentTime.prefix(2))!
+        let min = currentTime.suffix(2)
+        
+        if (tag == 0) {
+            titleLabel.text = "나의 위치"
+            locationLabel.text = model.name
+        } else {
+            titleLabel.text = model.name
+            if (hour > 12) { locationLabel.text = "오후 \(hour-12):\(min)"}
+            else { locationLabel.text = "오전 \(hour):\(min)" }
+        }
+        weatherLabel.text = model.weather[0].main
+        
+        let temp = Int(round(model.main.temp))
+        let tempLow = Int(round(model.main.tempMin))
+        let tempHigh = Int(round(model.main.tempMax))
+        tempLabel.text = "\(temp)°"
+        tempLowLabel.text = "최저 : \(tempLow)°"
+        tempHighLabel.text = "최고 : \(tempHigh)°"
     }
 }
-
