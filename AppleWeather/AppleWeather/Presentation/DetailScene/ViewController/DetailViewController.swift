@@ -136,6 +136,7 @@ extension DetailViewController {
     
     func setDataBind(index: Int) {
         detailTitleView.setDataBind(model: weatherEntity[index])
+        detailTitleView.locationDetailLabel.text = city[index]
         detailSmallTitleView.setDataBind(model: weatherEntity[index])
         self.indexPage = index
     }
